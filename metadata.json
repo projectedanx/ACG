@@ -1,0 +1,7 @@
+{
+  "name": "Architecture AI: Multi-Agent Architectural Governance",
+  "description": "An AI-powered platform that orchestrates specialized agents to collaboratively analyze, propose, and implement large-scale architectural refactorings with drift detection.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
