@@ -17,6 +17,7 @@ const App: React.FC = () => {
       BACKEND_ENGINEER: PERSONAS[1].name,
       SECURITY_SPECIALIST: PERSONAS[2].name,
       DEVOPS_ENGINEER: PERSONAS[3].name,
+      EPISTEMIC_ENGINEER: PERSONAS[4].name,
     },
     isDeepThinking: true, // Default to deep thinking for architecture
     isWebSearch: false,
@@ -133,7 +134,7 @@ const App: React.FC = () => {
           <div className="hidden sm:flex gap-6 items-center">
             <div className="text-right border-r border-slate-700 pr-4">
               <p className="text-[10px] font-bold text-slate-500 uppercase">Agents Active</p>
-              <p className="text-sm font-black text-indigo-400">4 / 4 Online</p>
+              <p className="text-sm font-black text-indigo-400">5 / 5 Online</p>
             </div>
             <div className="text-right">
               <p className="text-[10px] font-bold text-slate-500 uppercase">System Status</p>

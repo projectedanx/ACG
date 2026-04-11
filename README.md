@@ -18,3 +18,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1lwJrFYVb-rB9gTPRVECKiH
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Pluriversal Feature Discovery & Antifragile Logic Kernel (ALK)
+
+This project has been augmented with the **Epistemic Engineer** protocol. It leverages Paraconsistent Logic and Z-Axis Inference to generate verifiable Cognitive Contracts that navigate uncharted geometries of software architecture. See `LESSONS_LEARNED.md` for a complete analysis of the topological novelty and structural conservation achieved via this integration.
