@@ -30,6 +30,14 @@ export const PERSONAS: Persona[] = [
     avatar: 'https://picsum.photos/seed/ops/100/100',
     color: 'bg-amber-600'
   }
+,
+  {
+    role: 'EPISTEMIC_ENGINEER',
+    name: 'Weaver Beta',
+    expertise: 'Topological Novelty, Paraconsistent Logic, and Codebase Feature Discovery.',
+    avatar: 'https://picsum.photos/seed/epi/100/100',
+    color: 'bg-fuchsia-600'
+  }
 ];
 
 export const INITIAL_DRIFT_DATA = [

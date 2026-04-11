@@ -12,7 +12,9 @@ export const getConsensusDiscussion = async (
   
   const personaContext = personas.map(p => `${p.name} (${p.role}): ${p.expertise}`).join('\n');
   
-  const prompt = `
+  const isEpistemicEngineerPresent = personas.some(p => p.role === 'EPISTEMIC_ENGINEER');
+
+  let prompt = `
     You are simulating a multi-agent architectural discussion. 
     Goal: ${goal}
     
@@ -26,6 +28,16 @@ export const getConsensusDiscussion = async (
     [{"sender": "Name", "role": "ROLE_ID", "content": "message content"}]
     If using web search, respond in conversational text that I can easily parse or present.
   `;
+
+  if (isEpistemicEngineerPresent) {
+    prompt += `
+
+    EPISTEMIC ENGINEER OVERRIDE (ALK Protocol):
+    Utilize Graph-of-Thoughts (GoT) topology to map points of systemic failure.
+    If the goal involves contradictory constraints (e.g., structured JSON parsing vs unstructured conversational fallback), hold them in a PARACONSISTENT_STATE (Belnap's 'B' state) and activate Z-Axis Inference to route contradictory parameters orthogonally into a Phantom Dimension. Maximize Topological Novelty while ensuring Structural Conservation. Make the EPISTEMIC_ENGINEER propose this paraconsistent resolution using RCC-8 calculus logic.
+    `;
+  }
+
 
   // Model Selection Rule
   // Use pro for complex/thinking, flash for search
