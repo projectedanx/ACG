@@ -1,5 +1,5 @@
 
-export type AgentRole = 'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER';
+export type AgentRole = 'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT';
 
 export interface Persona {
   role: AgentRole;
@@ -7,6 +7,11 @@ export interface Persona {
   expertise: string;
   avatar: string;
   color: string;
+  designation?: string;
+  build_version?: string;
+  specialty?: string[];
+  when_to_use?: string;
+  epistemic_matrix?: any;
 }
 
 export interface GroundingLink {
