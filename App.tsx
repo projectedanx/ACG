@@ -8,6 +8,8 @@ import ConsensusPanel from './components/ConsensusPanel';
 import SemanticDiffViewer from './components/SemanticDiffViewer';
 import DriftDashboard from './components/DriftDashboard';
 import { getConsensusDiscussion, generateRefactorPlan, generateSemanticDiff } from './services/geminiService';
+import { simulateZAxis } from './services/zAxisInference';
+
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
@@ -42,6 +44,19 @@ const App: React.FC = () => {
   const handleInitiateConsensus = async () => {
     setState(prev => ({ ...prev, isProcessing: true, messages: [], currentPlan: null }));
     addAuditLog('Orchestration Start', `Mode: ${state.isDeepThinking ? 'Deep Thinking' : 'Standard'} | Search: ${state.isWebSearch ? 'Enabled' : 'Disabled'}`);
+
+    if (state.isDeepThinking && state.isWebSearch) {
+      addAuditLog('PIRK Engaged', 'Contradictory constraints detected. Activating Z-Axis Inference (Phantom Dimension).');
+      const zAxisResult = simulateZAxis();
+      if (zAxisResult.success) {
+        addAuditLog(
+          'Paraconsistent State (B) Established',
+          `Topological Novelty (B1) validated. Initial Div: ${zAxisResult.initialDivergence.toFixed(4)} -> Z-Axis Div: ${zAxisResult.newDivergence.toFixed(4)}`
+        );
+      } else {
+        addAuditLog('PIRK Failure', 'Failed to establish Paraconsistent State.');
+      }
+    }
 
     try {
       const activePersonas = PERSONAS.filter(p => state.selectedPersonas[p.role] === p.name);
