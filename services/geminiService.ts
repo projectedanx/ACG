@@ -10,7 +10,13 @@ export const getConsensusDiscussion = async (
 ): Promise<{ text: string; citations: GroundingLink[] }> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   
-  const personaContext = personas.map(p => `${p.name} (${p.role}): ${p.expertise}`).join('\n');
+  const personaContext = personas.map(p => {
+    let context = `${p.name} (${p.role}): ${p.expertise}`;
+    if (p.epistemic_matrix) {
+      context += `\nEpistemic Matrix:\n${JSON.stringify(p.epistemic_matrix, null, 2)}`;
+    }
+    return context;
+  }).join('\n\n');
   
   const isEpistemicEngineerPresent = personas.some(p => p.role === 'EPISTEMIC_ENGINEER');
 
