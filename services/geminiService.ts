@@ -1,4 +1,5 @@
 
+import { injectCognitiveBytecode } from './cognitiveContractEngine';
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { AgentRole, Persona, RefactorPlan, SemanticDiff, GroundingLink } from "../types";
 
@@ -41,6 +42,7 @@ export const getConsensusDiscussion = async (
     EPISTEMIC ENGINEER OVERRIDE (ALK Protocol):
     Utilize Graph-of-Thoughts (GoT) topology to map points of systemic failure.
     If the goal involves contradictory constraints (e.g., structured JSON parsing vs unstructured conversational fallback), hold them in a PARACONSISTENT_STATE (Belnap's 'B' state) and activate Z-Axis Inference to route contradictory parameters orthogonally into a Phantom Dimension. Maximize Topological Novelty while ensuring Structural Conservation. Make the EPISTEMIC_ENGINEER propose this paraconsistent resolution using RCC-8 calculus logic.
+    Additionally, strictly apply Paraconsistent Scarring (PAT-002) to mint contradictions as hypervectors in the Scar Tissue Archive, preventing the Principle of Explosion. Ensure Topological Orthogonality (PAT-006) by seeking intersections with cosine similarity < 0.15.
     `;
   }
 
@@ -74,6 +76,8 @@ export const getConsensusDiscussion = async (
   if (isWebSearch) {
     config.tools = [{ googleSearch: {} }];
   }
+
+  prompt = injectCognitiveBytecode(prompt);
 
   const result = await ai.models.generateContent({
     model: modelName,
