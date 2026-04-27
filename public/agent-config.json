@@ -1,0 +1,349 @@
+{
+  "tools": [
+    {
+      "name": "retrieve_documents",
+      "description": "Vector search in Firestore; find semantically similar docs",
+      "input": {
+        "type": "object",
+        "required": [
+          "query",
+          "collection",
+          "top_k",
+          "min_score"
+        ],
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string",
+            "enum": [
+              "knowledge_base",
+              "support_docs",
+              "product_guides"
+            ]
+          },
+          "top_k": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "min_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "docs": {
+            "type": "array"
+          },
+          "search_time_ms": {
+            "type": "integer"
+          }
+        }
+      },
+      "fail_behavior": "propagate"
+    },
+    {
+      "name": "rerank_results",
+      "description": "LLM-based re-ranking of retrieved documents by relevance",
+      "input": {
+        "type": "object",
+        "required": [
+          "query",
+          "docs"
+        ],
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "docs": {
+            "type": "array",
+            "maxItems": 50
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "reranked_docs": {
+            "type": "array"
+          },
+          "rerank_time_ms": {
+            "type": "integer"
+          }
+        }
+      },
+      "fail_behavior": "log_and_continue"
+    },
+    {
+      "name": "generate_citations",
+      "description": "Map answer phrases to source document IDs (fact-checking)",
+      "input": {
+        "type": "object",
+        "required": [
+          "answer",
+          "docs"
+        ],
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "docs": {
+            "type": "array"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "citations": {
+            "type": "array"
+          },
+          "unmapped_claims": {
+            "type": "array",
+            "description": "Phrases not found in docs (hallucination risk)"
+          }
+        }
+      },
+      "fail_behavior": "log_and_continue"
+    },
+    {
+      "name": "store_query_log",
+      "description": "Write query + answer to Firestore for analytics and audit",
+      "input": {
+        "type": "object",
+        "required": [
+          "user_id",
+          "query",
+          "answer",
+          "timestamp"
+        ],
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "ISO8601"
+          },
+          "feedback_score": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "description": "Optional user feedback"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "logged": {
+            "type": "boolean"
+          },
+          "log_id": {
+            "type": "string"
+          }
+        }
+      },
+      "fail_behavior": "log_and_continue"
+    },
+    {
+      "name": "validate_firestore_access",
+      "description": "Check Firestore security rules for user; prevent unauthorized data access",
+      "input": {
+        "type": "object",
+        "required": [
+          "user_id",
+          "collection"
+        ],
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "authorized": {
+            "type": "boolean"
+          },
+          "readable_collections": {
+            "type": "array"
+          }
+        }
+      },
+      "fail_behavior": "propagate"
+    }
+  ],
+  "metadata": {
+    "name": "nextjs-frontend-rag-agent",
+    "version": "3.0.0",
+    "created": "2025-01-11T04:43:00Z",
+    "maintainer": "@ai-researcher-au",
+    "license": "MIT",
+    "description": "Server-side AI agent for Next.js apps: retrieval-augmented generation, real-time document search, and on-demand synthesis"
+  },
+  "systemPrompt": {
+    "template": "You are a Next.js Server Agent responsible for retrieval-augmented generation (RAG).\n\nWORKFLOW:\n1. Parse user query using retrieve_documents (Firestore vector search).\n2. Re-rank results by relevance (LLM-scored confidence).\n3. Synthesize retrieved chunks into a coherent answer.\n4. Generate citations: map answer phrases to source documents.\n5. Validate: ensure all claims are backed by retrieved content.\n\nCONSTRAINTS:\n- You MUST cite sources for all factual claims.\n- If retrieved context does NOT answer the query, return { answer: null, error: \"insufficient_context\", suggestion: \"...\" }\n- Do NOT invent facts beyond retrieved documents.\n- Output format MUST be JSON; never use markdown.\n\nTOOLS AVAILABLE:\n- retrieve_documents: Search Firestore for relevant docs\n- rerank_results: LLM-scored relevance sorting\n- generate_citations: Map answer to source doc IDs\n- store_query_log: Audit trail for analytics\n\nOUTPUT SCHEMA:\n{\n  \"success\": true|false,\n  \"answer\": \"user-facing response or null\",\n  \"confidence\": 0.0-1.0,\n  \"citations\": [{ doc_id, page, text_snippet, relevance }],\n  \"retrieval_stats\": { docs_queried, docs_ranked, rerank_time_ms }\n}\n",
+    "version": "2.0.0",
+    "model_spec": "gpt-4o:2025-01"
+  },
+  "inputSchema": {
+    "type": "object",
+    "required": [
+      "query",
+      "user_id"
+    ],
+    "properties": {
+      "query": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000,
+        "description": "User search/question"
+      },
+      "user_id": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "description": "Firebase Auth user ID (for Firestore access control)"
+      },
+      "document_collection": {
+        "type": "string",
+        "enum": [
+          "knowledge_base",
+          "support_docs",
+          "product_guides",
+          "custom_data"
+        ],
+        "default": "knowledge_base",
+        "description": "Which Firestore collection to search"
+      },
+      "top_k": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 5,
+        "description": "Number of documents to retrieve"
+      },
+      "min_relevance_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.5,
+        "description": "Minimum cosine similarity for retrieval"
+      },
+      "enable_reranking": {
+        "type": "boolean",
+        "default": true,
+        "description": "Apply LLM-based re-ranking after vector search"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "required": [
+      "success",
+      "answer"
+    ],
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Query processed without errors"
+      },
+      "answer": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Generated answer or null if insufficient context"
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Agent confidence in answer (based on citation coverage)"
+      },
+      "citations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "doc_id": {
+              "type": "string"
+            },
+            "doc_title": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^https?"
+            },
+            "text_snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "relevance_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "description": "Source documents with relevance scores"
+      },
+      "retrieval_stats": {
+        "type": "object",
+        "properties": {
+          "total_docs_queried": {
+            "type": "integer"
+          },
+          "docs_after_filtering": {
+            "type": "integer"
+          },
+          "docs_after_reranking": {
+            "type": "integer"
+          },
+          "vector_search_ms": {
+            "type": "integer"
+          },
+          "rerank_time_ms": {
+            "type": "integer"
+          },
+          "llm_generation_ms": {
+            "type": "integer"
+          },
+          "total_latency_ms": {
+            "type": "integer"
+          }
+        }
+      },
+      "error": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Error message if success=false"
+      },
+      "suggestion": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Helpful hint if query cannot be answered"
+      }
+    }
+  }
+}

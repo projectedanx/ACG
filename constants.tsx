@@ -68,6 +68,16 @@ export const PERSONAS: Persona[] = [
       }
     }
   }
+,
+  {
+    role: 'FRONTEND_ENGINEER',
+    name: 'Next.js RAG Agent',
+    expertise: 'Server-side AI agent for Next.js apps: retrieval-augmented generation, real-time document search, and on-demand synthesis',
+    avatar: 'https://picsum.photos/seed/front/100/100',
+    color: 'bg-blue-600',
+    designation: 'Reflector + ToolUser',
+    build_version: '3.0.0'
+  }
 ];
 
 export const INITIAL_DRIFT_DATA = [
