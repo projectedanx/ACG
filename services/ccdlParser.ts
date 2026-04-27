@@ -46,7 +46,7 @@ export const parseCCDL = (markdownContent: string): CCDLSchema => {
       if (!registryMatch) return tools;
 
       const registryContent = registryMatch[1];
-      const toolRegex = /####\s+\d+\.\s+([a-zA-Z0-9_-]+)\n+```yaml\n([\s\S]*?)\n```/g;
+      const toolRegex = /####\\s+(?:\\d+\\.\\s+)?([a-zA-Z0-9_-]+)\\n+"""yaml\\n([\\s\\S]*?)\\n"""/g;
 
       let match;
       while ((match = toolRegex.exec(registryContent)) !== null) {
