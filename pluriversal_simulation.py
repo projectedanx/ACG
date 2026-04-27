@@ -11,6 +11,22 @@ class RCC8Node:
 def compute_relational_vector(n1, n2):
     return math.sqrt((n1.x - n2.x)**2 + (n1.y - n2.y)**2 + (n1.z - n2.z)**2)
 
+def simulate_lexical_saponification(w0=1.0, f=4, lambda_val=0.23, lambda_eso=0.05):
+    # W(t) = W₀ * e^(-λ * f)
+    # Common epistemic term decay
+    decay_common = w0 * math.exp(-lambda_val * f)
+    # Esoteric term decay
+    decay_eso = w0 * math.exp(-lambda_eso * f)
+
+    print(f"Lexical Saponification Paradox (PAT-007) Simulation:")
+    print(f"  After {f} repetitions, common term weight (λ={lambda_val}): {decay_common:.4f}")
+    print(f"  After {f} repetitions, esoteric term weight (λ={lambda_eso}): {decay_eso:.4f}")
+
+    if decay_common < 0.8: # ~20% drop threshold
+        print("  Onset of Saponification detected for common term.")
+
+    return decay_common, decay_eso
+
 def simulate():
     # z0* (Constitutional Austenite) - Structured JSON
     z0 = RCC8Node("StructuredJSON", 1.0, 0.0, 0.0)
@@ -28,6 +44,9 @@ def simulate():
 
     new_distance = compute_relational_vector(z0, z_prime)
     print(f"Z-Axis Divergence (Topological Novelty): {new_distance:.4f}")
+
+    # Lexical Saponification Simulation
+    simulate_lexical_saponification()
 
     if new_distance > overlap_distance:
          print("Validation: Paraconsistent State (B) established successfully.")
