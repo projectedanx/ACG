@@ -6,6 +6,7 @@ export interface CCDLSchema {
   tools?: Record<string, any>[];
   inputSchema?: Record<string, any>;
   outputSchema?: Record<string, any>;
+  pdtSpecification?: Record<string, any>;
 }
 
 export const parseCCDL = (markdownContent: string): CCDLSchema => {
@@ -45,7 +46,7 @@ export const parseCCDL = (markdownContent: string): CCDLSchema => {
       if (!registryMatch) return tools;
 
       const registryContent = registryMatch[1];
-      const toolRegex = /####\\s+(?:\\d+\\.\\s+)?([a-zA-Z0-9_-]+)\\n+"""yaml\\n([\\s\\S]*?)\\n"""/g;
+      const toolRegex = /####\s+(?:\d+\.\s+)?([a-zA-Z0-9_-]+)\n+```yaml\n([\s\S]*?)\n```/g;
 
       let match;
       while ((match = toolRegex.exec(registryContent)) !== null) {
@@ -64,6 +65,7 @@ export const parseCCDL = (markdownContent: string): CCDLSchema => {
   schema.inputSchema = extractJSONBlock(markdownContent, 'Input Schema') || {};
   schema.outputSchema = extractJSONBlock(markdownContent, 'Output Schema') || {};
   schema.tools = extractTools(markdownContent);
+  schema.pdtSpecification = extractYAMLBlock(markdownContent, 'PDT_SPECIFICATION_BLOCK') || {};
 
   return schema;
 };
