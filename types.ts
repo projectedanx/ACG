@@ -66,6 +66,16 @@ export interface AuditLogEntry {
 }
 
 
+
+export interface EpistemicBias {
+  id: string;
+  type: string;
+  description: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  sourceMessageId: string;
+  isGoldenScar: boolean;
+}
+
 export type WorkflowState = 'idle' | 'deliberating' | 'awaiting_reflexion' | 'synthesizing' | 'review';
 
 export interface AppState {
@@ -80,4 +90,5 @@ export interface AppState {
   isProcessing: boolean;
   workflowState: WorkflowState;
   humanReflexionInput: string;
+  biases: EpistemicBias[];
 }
