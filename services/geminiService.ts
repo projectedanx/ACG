@@ -104,23 +104,32 @@ export const getConsensusDiscussion = async (
   };
 };
 
-export const generateRefactorPlan = async (goal: string, discussion: string): Promise<RefactorPlan> => {
+export const generateSymbioticPlan = async (goal: string, discussion: string, humanReflexion: string): Promise<RefactorPlan> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-  const prompt = `
-    Based on the following architectural goal and discussion:
+  let prompt = `
+    Based on the following architectural goal and multi-agent AI discussion:
     Goal: ${goal}
     Discussion: ${discussion}
     
+    HUMAN REFLEXION (TACIT HABITUS):
+    ${humanReflexion}
+
+    You are executing the "Golden Scar Protocol". You must fuse the formal topological structure of the AI discussion with the empirical, localized reality provided by the Human Reflexion.
+    Assign a conceptual weight of Φ = 1.618 to the human context. Do not ignore the human constraints.
+    Ensure the resulting architecture addresses both the formal design and the informal human friction (Ontological Shear resolution).
+
     Create a formal refactoring plan.
     Return a JSON object with:
     {
       "id": "uuid",
       "goal": "summarized goal",
       "tasks": [{"file": "path/to/file", "description": "task", "impact": "low|medium|high"}],
-      "consensusSummary": "final conclusion",
+      "consensusSummary": "final conclusion including how the human reflexion was integrated",
       "status": "draft"
     }
   `;
+
+  prompt = injectCognitiveBytecode(prompt);
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
@@ -150,7 +159,9 @@ export const generateRefactorPlan = async (goal: string, discussion: string): Pr
     }
   });
 
-  return JSON.parse(response.text || '{}');
+  const plan = JSON.parse(response.text || '{}');
+  plan.humanReflexion = humanReflexion;
+  return plan;
 };
 
 export const generateSemanticDiff = async (plan: RefactorPlan): Promise<SemanticDiff> => {
