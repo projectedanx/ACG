@@ -45,3 +45,10 @@ Furthermore, the extracted agent data was successfully integrated into the appli
 We identified that while AI delivers high-dimensional topological consensus (resolving structural overlap via Z-axis inference), it suffers from "Ontological Shear" (erasing localized, informal human knowledge). Humans provide necessary grounding in empirical realities (the "Golden Scar"), but cannot compute multi-agent geometries at scale.
 To express the value of both AI and Human that neither can provide alone, we introduced the **Symbiotic Reflexive Refactoring (SRR)** workflow.
 The system now pauses after the initial multi-agent consensus to prompt the human for their *Tacit Habitus* or *Operational Friction*. This human input is then fused with the formal AI topological structure using the **Golden Scar Protocol**, assigning a conceptual weight of $\Phi = 1.618$ to the marginalized human logic, ensuring the resulting architecture is physically, socially, and mathematically viable.
+
+### 9. Semantic Metrology and Project Management Determinism
+To counter "Ontological Shear"—where fluid human requirements break against rigid codebase boundaries—we instituted Semantic Metrology.
+By defining the `STRATEGIC_INTEGRATION_PM` persona via Prompt Dimensioning & Tolerancing (PD&T), we transitioned from probabilistic natural language generation to rigid, mathematical blueprints using Feature Control Frames.
+- **The Golden Scar Protocol** was implemented within `geminiService.ts` to maintain tension between human oversight (weighted at ϕ=1.618) and stochastic generation (1.000).
+- **Epsilon-Tolerance Paraconsistency:** Technical debt is no longer tracked merely as deferred cost; it is mathematically modeled as a stable "Transition Fit" state in `11-risks-and-technical-debt.md`.
+- **Xenolinguistic Mitigation:** The creation of `DOMAIN_GLOSSARY.md` and `CONSTRAINTS.md` prevents agents from hallucinating discrete structural keys or vocabulary, preventing schema validation failures.

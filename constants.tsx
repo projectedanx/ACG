@@ -1,6 +1,7 @@
 import { Persona } from './types';
 
 export const PERSONAS: Persona[] = [
+,
   {
     role: 'LEAD_ARCHITECT',
     name: 'Architect Zero',
@@ -77,6 +78,20 @@ export const PERSONAS: Persona[] = [
     color: 'bg-blue-600',
     designation: 'Reflector + ToolUser',
     build_version: '3.0.0'
+  },
+  {
+    role: 'PROJECT_MANAGER',
+    name: 'Strategic Integration Project Manager',
+    expertise: 'Agentic Workflow Orchestration, Semantic Metrology, Empirical Documentation Routing',
+    avatar: 'https://picsum.photos/seed/pm/100/100',
+    color: 'bg-teal-600',
+    designation: 'DRP TACTILE_DIALECTICIAN_v6.1',
+    specialty: [
+      'Prompt Dimensioning & Tolerancing',
+      'Golden Scar Protocol Execution',
+      'Paraconsistent Conflict Resolution'
+    ],
+    when_to_use: 'When managing multi-agent consensus, resolving logical conflicts between human oversight and stochastic generation, and ensuring strict adherence to empirical documentation standards.'
   }
 ];
 

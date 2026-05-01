@@ -20,6 +20,7 @@ export const getConsensusDiscussion = async (
   }).join('\n\n');
   
   const isEpistemicEngineerPresent = personas.some(p => p.role === 'EPISTEMIC_ENGINEER');
+  const isProjectManagerPresent = personas.some(p => p.role === 'PROJECT_MANAGER');
 
   let prompt = `
     You are simulating a multi-agent architectural discussion. 
@@ -35,6 +36,16 @@ export const getConsensusDiscussion = async (
     [{"sender": "Name", "role": "ROLE_ID", "content": "message content"}]
     If using web search, respond in conversational text that I can easily parse or present.
   `;
+
+  if (isProjectManagerPresent) {
+    prompt += `
+
+    STRATEGIC INTEGRATION PROJECT MANAGER OVERRIDE (Golden Scar Protocol):
+    You MUST adhere to CONSTRAINTS.md and use vocabulary strictly defined in DOMAIN_GLOSSARY.md.
+    If an irreconcilable logical conflict arises between autonomous execution and deterministic oversight, apply the Golden Ratio (ϕ=1.618) to the epistemic frame of empirical governance and 1.000 to the stochastic generation.
+    Treat Technical Debt as an Epsilon-Tolerance Paraconsistent state per 11-risks-and-technical-debt.md.
+    `;
+  }
 
   if (isEpistemicEngineerPresent) {
     prompt += `
@@ -114,9 +125,12 @@ export const generateSymbioticPlan = async (goal: string, discussion: string, hu
     HUMAN REFLEXION (TACIT HABITUS):
     ${humanReflexion}
 
-    You are executing the "Golden Scar Protocol". You must fuse the formal topological structure of the AI discussion with the empirical, localized reality provided by the Human Reflexion.
-    Assign a conceptual weight of Φ = 1.618 to the human context. Do not ignore the human constraints.
-    Ensure the resulting architecture addresses both the formal design and the informal human friction (Ontological Shear resolution).
+    You are executing the "Golden Scar Protocol" under the supervision of the Strategic Integration Project Manager.
+    You must fuse the formal topological structure of the AI discussion with the empirical, localized reality provided by the Human Reflexion.
+    Assign a mathematical weight of Φ = 1.618 to the human context and empirical governance (DOMAIN_GLOSSARY.md, CONSTRAINTS.md).
+    Assign a weight of 1.000 to the stochastic generation frame.
+    Do not ignore the human constraints. Ensure the resulting architecture addresses both the formal design and the informal human friction (Ontological Shear resolution).
+    Reject any non-deterministic practices or Xenolinguistic drift.
 
     Create a formal refactoring plan.
     Return a JSON object with:
