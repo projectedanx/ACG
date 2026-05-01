@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { AppState, AgentRole, Message, RefactorPlan, SemanticDiff, AuditLogEntry } from './types';
+import { AppState, AgentRole, Message, RefactorPlan, SemanticDiff, AuditLogEntry, EpistemicBias } from './types';
 import { PERSONAS } from './constants';
 import ControlPanel from './components/ControlPanel';
 import AgentPersonaSelector from './components/AgentPersonaSelector';
@@ -8,7 +8,8 @@ import ConsensusPanel from './components/ConsensusPanel';
 import SemanticDiffViewer from './components/SemanticDiffViewer';
 import ReflexiveInjectionPanel from './components/ReflexiveInjectionPanel';
 import DriftDashboard from './components/DriftDashboard';
-import { getConsensusDiscussion, generateSymbioticPlan, generateSemanticDiff } from './services/geminiService';
+import AESADashboard from './components/AESADashboard';
+import { getConsensusDiscussion, generateSymbioticPlan, generateSemanticDiff, analyzeEpistemicBiases } from './services/geminiService';
 import { simulateZAxis } from './services/zAxisInference';
 
 
@@ -23,6 +24,9 @@ const App: React.FC = () => {
     diffs: [],
     auditLogs: [],
     isProcessing: false,
+    workflowState: 'idle',
+    humanReflexionInput: '',
+    biases: [],
   });
 
   const addAuditLog = (action: string, details: string) => {
@@ -35,6 +39,24 @@ const App: React.FC = () => {
     };
     setState(prev => ({ ...prev, auditLogs: [entry, ...prev.auditLogs] }));
   };
+
+
+  const handleMarkGoldenScar = useCallback((biasId: string) => {
+    setState(prev => ({
+      ...prev,
+      biases: prev.biases.map(b =>
+        b.id === biasId ? { ...b, isGoldenScar: true } : b
+      )
+    }));
+
+    const bias = state.biases.find(b => b.id === biasId);
+    if (bias) {
+      addAuditLog(
+        'Golden Scar Protocol Engaged',
+        `Assigned weight [Φ = 1.618] to marginalized logic identified as "${bias.type}". AI critique preserved in superposition.`
+      );
+    }
+  }, [state.biases]);
 
   const handleInitiateConsensus = async () => {
     setState(prev => ({ ...prev, isProcessing: true, messages: [], currentPlan: null }));
@@ -90,6 +112,14 @@ const App: React.FC = () => {
       setState(prev => ({ ...prev, messages: formattedMessages, workflowState: 'awaiting_reflexion' }));
       addAuditLog('Consensus Achieved', `Synthesized ${formattedMessages.length} agent reports.`);
       addAuditLog('Awaiting Reflexion', 'AI orchestration paused. Awaiting human Tacit Habitus injection (Golden Scar Protocol).');
+
+      // [⊘] Run AESA asynchronously to avoid blocking the UI
+      analyzeEpistemicBiases(formattedMessages).then(biases => {
+        if (biases.length > 0) {
+          setState(prev => ({ ...prev, biases }));
+          addAuditLog('AESA Scan Complete', `Detected ${biases.length} potential epistemic biases/fallacies in the consensus log.`);
+        }
+      });
     } catch (error) {
       console.error(error);
       alert('Orchestration failed. Please verify API configuration.');
@@ -235,7 +265,14 @@ const App: React.FC = () => {
             isProcessing={state.isProcessing}
           />
 
+
           <DriftDashboard diffs={state.diffs} />
+
+          <AESADashboard
+            biases={state.biases}
+            onMarkGoldenScar={handleMarkGoldenScar}
+          />
+
 
           <ConsensusPanel messages={state.messages} />
 

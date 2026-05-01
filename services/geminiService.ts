@@ -1,7 +1,57 @@
 
 import { injectCognitiveBytecode } from './cognitiveContractEngine';
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
-import { AgentRole, Persona, RefactorPlan, SemanticDiff, GroundingLink } from "../types";
+import { AgentRole, Persona, RefactorPlan, SemanticDiff, GroundingLink, EpistemicBias, Message } from "../types";
+
+
+export const analyzeEpistemicBiases = async (messages: Message[]): Promise<EpistemicBias[]> => {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+
+  const discussionContext = messages.map(m => `[${m.role}] ${m.sender}: ${m.content}`).join('\n\n');
+
+  const prompt = `
+    You are the Automated Epistemic Security Auditing (AESA) module. Your purpose is to scan architectural discussions for "cognitive blind spots," systemic biases, and logical fallacies (e.g., Conway's Law manifestations, sunk cost fallacy in tech choices).
+
+    Discussion Context:
+    ${discussionContext}
+
+    Instructions:
+    1. Identify any logical fallacies, systemic biases, or cognitive illiberalisms in the discussion.
+    2. Do NOT auto-correct them (Anti-Ontological Flattening). We must preserve the paraconsistent state.
+    3. Output your findings as a strict JSON array of objects.
+    4. Each object must have the following schema:
+       {
+         "id": "unique-string-id",
+         "type": "Name of Bias/Fallacy (e.g., Conway's Law, Sunk Cost)",
+         "description": "Detailed explanation of why this bias is present and its potential architectural impact.",
+         "severity": "low" | "medium" | "high" | "critical",
+         "sourceMessageId": "The ID of the message that most strongly exhibits this bias (or 'system' if it's emergent)"
+       }
+    5. Return ONLY the JSON array. No markdown blocks, no preamble, no postamble. If no biases are found, return an empty array [].
+  `;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+      config: {
+        temperature: 0.2,
+        responseMimeType: "application/json",
+      }
+    });
+
+    const text = response.text || '[]';
+    const cleanedText = text.replace(/^```json\n/, '').replace(/\n```$/, '');
+
+    const biases: Omit<EpistemicBias, 'isGoldenScar'>[] = JSON.parse(cleanedText);
+
+    return biases.map(b => ({ ...b, isGoldenScar: false }));
+
+  } catch (error) {
+    console.error("AESA Analysis failed:", error);
+    return [];
+  }
+};
 
 export const getConsensusDiscussion = async (
   goal: string, 
