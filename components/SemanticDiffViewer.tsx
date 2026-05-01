@@ -33,6 +33,14 @@ const SemanticDiffViewer: React.FC<Props> = ({ plan, diff, onExecute, isProcessi
           <div className="bg-slate-900 rounded-lg p-5 text-indigo-300 code-font text-sm">
             <p className="text-white font-bold mb-2">// Proposed Goal: {plan.goal}</p>
             <p className="mb-4 text-slate-400">/* {plan.consensusSummary} */</p>
+
+            {plan.humanReflexion && (
+              <div className="mb-4 p-3 border border-amber-500/30 bg-amber-500/10 rounded-md">
+                <p className="text-amber-400 font-bold mb-1">// Tacit Habitus / Golden Scar (Φ = 1.618)</p>
+                <p className="text-amber-200/80 italic">/* "{plan.humanReflexion}" */</p>
+              </div>
+            )}
+
             <div className="space-y-1">
               {plan.tasks.map((t, idx) => (
                 <div key={idx} className="flex items-start gap-2">

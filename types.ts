@@ -39,6 +39,7 @@ export interface RefactorPlan {
   goal: string;
   tasks: RefactorTask[];
   consensusSummary: string;
+  humanReflexion?: string;
   status: 'draft' | 'approved' | 'rejected' | 'executed';
 }
 
@@ -64,6 +65,9 @@ export interface AuditLogEntry {
   timestamp: Date;
 }
 
+
+export type WorkflowState = 'idle' | 'deliberating' | 'awaiting_reflexion' | 'synthesizing' | 'review';
+
 export interface AppState {
   goal: string;
   selectedPersonas: Record<AgentRole, string>;
@@ -74,4 +78,6 @@ export interface AppState {
   diffs: SemanticDiff[];
   auditLogs: AuditLogEntry[];
   isProcessing: boolean;
+  workflowState: WorkflowState;
+  humanReflexionInput: string;
 }

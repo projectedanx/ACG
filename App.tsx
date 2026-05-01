@@ -6,8 +6,9 @@ import ControlPanel from './components/ControlPanel';
 import AgentPersonaSelector from './components/AgentPersonaSelector';
 import ConsensusPanel from './components/ConsensusPanel';
 import SemanticDiffViewer from './components/SemanticDiffViewer';
+import ReflexiveInjectionPanel from './components/ReflexiveInjectionPanel';
 import DriftDashboard from './components/DriftDashboard';
-import { getConsensusDiscussion, generateRefactorPlan, generateSemanticDiff } from './services/geminiService';
+import { getConsensusDiscussion, generateSymbioticPlan, generateSemanticDiff } from './services/geminiService';
 import { simulateZAxis } from './services/zAxisInference';
 
 
@@ -86,15 +87,31 @@ const App: React.FC = () => {
         }];
       }
 
-      setState(prev => ({ ...prev, messages: formattedMessages }));
+      setState(prev => ({ ...prev, messages: formattedMessages, workflowState: 'awaiting_reflexion' }));
       addAuditLog('Consensus Achieved', `Synthesized ${formattedMessages.length} agent reports.`);
-
-      const plan = await generateRefactorPlan(state.goal, discussionContent);
-      setState(prev => ({ ...prev, currentPlan: plan }));
-      addAuditLog('Plan Finalized', `Refactoring strategy mapped across ${plan.tasks.length} modules.`);
+      addAuditLog('Awaiting Reflexion', 'AI orchestration paused. Awaiting human Tacit Habitus injection (Golden Scar Protocol).');
     } catch (error) {
       console.error(error);
       alert('Orchestration failed. Please verify API configuration.');
+      setState(prev => ({ ...prev, workflowState: 'idle' }));
+    } finally {
+      setState(prev => ({ ...prev, isProcessing: false }));
+    }
+  };
+
+  const handleSynthesizePlan = async () => {
+    setState(prev => ({ ...prev, isProcessing: true, workflowState: 'synthesizing' }));
+    addAuditLog('Synthesis Initiated', 'Fusing formal AI topology with human Tacit Habitus (Φ = 1.618).');
+
+    try {
+      const discussionContent = JSON.stringify(state.messages.map(m => ({ sender: m.sender, role: m.role, content: m.content })));
+      const plan = await generateSymbioticPlan(state.goal, discussionContent, state.humanReflexionInput);
+      setState(prev => ({ ...prev, currentPlan: plan, workflowState: 'review' }));
+      addAuditLog('Symbiotic Plan Finalized', `Ontological Shear resolved. Strategy mapped across ${plan?.tasks?.length || 0} modules.`);
+    } catch (error) {
+      console.error(error);
+      alert('Synthesis failed.');
+      setState(prev => ({ ...prev, workflowState: 'awaiting_reflexion' }));
     } finally {
       setState(prev => ({ ...prev, isProcessing: false }));
     }
@@ -221,6 +238,14 @@ const App: React.FC = () => {
           <DriftDashboard diffs={state.diffs} />
 
           <ConsensusPanel messages={state.messages} />
+
+          <ReflexiveInjectionPanel
+            workflowState={state.workflowState}
+            humanReflexionInput={state.humanReflexionInput}
+            setHumanReflexionInput={(val) => setState(prev => ({ ...prev, humanReflexionInput: val }))}
+            onSynthesize={handleSynthesizePlan}
+            isProcessing={state.isProcessing}
+          />
 
           <SemanticDiffViewer 
             plan={state.currentPlan} 
