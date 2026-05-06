@@ -25,3 +25,7 @@ This project has been augmented with the **Epistemic Engineer** protocol. It lev
 
 ## Feature Roadmap & Product Strategy
 For a detailed breakdown of the 5 next-generation product features for the Architecture AI Governance platform (including the Multi-Agent Temporal Topology Forecasting and the Decentralized Cognitive Contracts Engine), please see the [Product Features Documentation](PRODUCT_FEATURES.md).
+
+## Antifragile Epistemic Weaver (AEW)
+
+The repository has been expanded to include the Antifragile Epistemic Weaver (AEW) module, operationalizing the Inversion Strategy. This feature delineates the conceptual values of human and AI: the AI processes High-Dimensional Topological Traversal, and the human provides Empirical Tacit Habitus. It integrates the Plausibility Oracle, maintaining structural superposition via the Golden Scar Protocol (weighting human input at $\Phi = 1.618$). See the `emerged_feature_aew` directory for the implementation plan and strict metrology checklist.
