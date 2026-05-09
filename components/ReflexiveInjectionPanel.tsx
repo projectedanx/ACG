@@ -9,6 +9,20 @@ interface Props {
   isProcessing: boolean;
 }
 
+/**
+ * Renders a text area allowing human operators to inject empirical realities
+ * (Ontological Shear mitigation) before the formal architectural plan is synthesized.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element} The rendered input panel.
+ */
+/**
+ * Renders a text area allowing human operators to inject empirical realities
+ * (Ontological Shear mitigation) before the formal architectural plan is synthesized.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element} The rendered input panel.
+ */
 const ReflexiveInjectionPanel: React.FC<Props> = ({
   workflowState,
   humanReflexionInput,

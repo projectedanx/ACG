@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Inspection utility script (inspect2.cjs).
+ * Used to traverse the file system, load modules, or perform static analysis.
+ */
 const fs = require('fs');
 ['components/AgentPersonaSelector.tsx', 'components/ControlPanel.tsx', 'components/SemanticDiffViewer.tsx', 'App.tsx'].forEach(f => {
   const code = fs.readFileSync(f, 'utf-8');

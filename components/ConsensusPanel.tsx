@@ -1,12 +1,27 @@
 
+/**
+ * @fileoverview UI Component displaying the real-time multi-agent discussion transcript.
+ */
+
 import React from 'react';
 import { Message, AgentRole } from '../types';
 import { PERSONAS } from '../constants';
 
+/**
+ * Props for the ConsensusPanel component.
+ * @interface Props
+ * @property {Message[]} messages - The array of messages forming the current discussion.
+ */
 interface Props {
   messages: Message[];
 }
 
+/**
+ * Renders the timeline of messages from various agent personas during the deliberation phase.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element | null} The rendered discussion panel, or null if no messages exist.
+ */
 const ConsensusPanel: React.FC<Props> = ({ messages }) => {
   if (messages.length === 0) return null;
 

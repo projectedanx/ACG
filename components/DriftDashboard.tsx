@@ -7,6 +7,13 @@ interface Props {
   diffs: SemanticDiff[];
 }
 
+/**
+ * Renders a line chart visualizing the accumulation of architectural drift over time.
+ * Calculates linear regression for trendlines based on SemanticDiff scores.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element} The rendered dashboard chart.
+ */
 const DriftDashboard: React.FC<Props> = ({ diffs }) => {
   const chartData = useMemo(() => {
     const rawData = diffs.map((d, index) => ({

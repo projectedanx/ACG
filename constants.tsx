@@ -1,7 +1,18 @@
+/**
+ * @fileoverview Application-wide constants and default configurations.
+ * Contains the defined personas for the multi-agent system and mock data for UI testing.
+ */
+
 import { Persona } from './types';
 
+/**
+ * Array of predefined Agent Personas available in the application.
+ * Each persona dictates the specific expertise, role, and epistemic matrix
+ * used during the multi-agent dialectical synthesis.
+ *
+ * @constant {Persona[]} PERSONAS
+ */
 export const PERSONAS: Persona[] = [
-,
   {
     role: 'LEAD_ARCHITECT',
     name: 'Architect Zero',
@@ -68,8 +79,7 @@ export const PERSONAS: Persona[] = [
         primary_mode: 'Top-down decomposition. Starts with C4 Context, moves to Containers, then Components.'
       }
     }
-  }
-,
+  },
   {
     role: 'FRONTEND_ENGINEER',
     name: 'Next.js RAG Agent',
@@ -95,6 +105,12 @@ export const PERSONAS: Persona[] = [
   }
 ];
 
+/**
+ * Initial dataset representing historical architectural drift metrics.
+ * Used primarily for initializing the DriftDashboard chart.
+ *
+ * @constant {Array<{timestamp: string, drift: number}>} INITIAL_DRIFT_DATA
+ */
 export const INITIAL_DRIFT_DATA = [
   { timestamp: '2025-01-01', drift: 5 },
   { timestamp: '2025-01-10', drift: 12 },

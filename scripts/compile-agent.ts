@@ -1,7 +1,18 @@
+/**
+ * @fileoverview Script to compile the AGENTS.md CCDL definitions into a JSON configuration.
+ * Parses the markdown and outputs the structural schema to the public directory.
+ */
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseCCDL } from '../services/ccdlParser.js';
 
+/**
+ * Main execution function for the agent compilation process.
+ * Reads AGENTS.md, parses the CCDL definition, and writes to public/agent-config.json.
+ *
+ * @returns {void}
+ */
 const run = () => {
   const agentsFilePath = path.join(process.cwd(), 'AGENTS.md');
   const outputFilePath = path.join(process.cwd(), 'public', 'agent-config.json');

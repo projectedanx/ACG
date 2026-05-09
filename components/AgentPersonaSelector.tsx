@@ -1,13 +1,30 @@
 
+/**
+ * @fileoverview UI Component for selecting agent personas for the governance council.
+ */
+
 import React from 'react';
 import { PERSONAS } from '../constants';
 import { AgentRole } from '../types';
 
+/**
+ * Props for the AgentPersonaSelector component.
+ * @interface Props
+ * @property {Record<AgentRole, string>} selectedPersonas - Map of currently selected persona names keyed by their role.
+ * @property {(role: AgentRole, personaName: string) => void} onSelect - Callback fired when an agent card is clicked.
+ */
 interface Props {
   selectedPersonas: Record<AgentRole, string>;
   onSelect: (role: AgentRole, personaName: string) => void;
 }
 
+/**
+ * Renders a grid of selectable agent persona cards.
+ * Highlights the currently active persona for each role category.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element} The rendered component block.
+ */
 const AgentPersonaSelector: React.FC<Props> = ({ selectedPersonas, onSelect }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-6">

@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Implements the Decentralized Cognitive Contracts Engine (DCCE).
+ * Defines the rules and decorators (Cognitive Bytecode) used to constrain and
+ * guide LLM behavior during architectural synthesis.
+ */
+
+/**
+ * Represents a single rule or constraint within the Cognitive Contract Engine.
+ * @interface CognitiveContractRule
+ * @property {string} id - The unique identifier for the rule (e.g., PAT-003-M).
+ * @property {string} decorator - The exact syntax string injected into prompts (e.g., +++ContextLock).
+ * @property {string} layer - The architectural layer this rule applies to (e.g., Cognitive/Systemic).
+ * @property {string} remediation - The specific anti-pattern or failure mode this rule mitigates.
+ * @property {Record<string, any>} parameters - Configuration arguments associated with the decorator.
+ */
 export interface CognitiveContractRule {
   id: string;
   decorator: string;
@@ -6,6 +21,10 @@ export interface CognitiveContractRule {
   parameters: Record<string, any>;
 }
 
+/**
+ * The core lexicon of Cognitive Bytecode rules deployed to govern the agentic simulation.
+ * @constant {CognitiveContractRule[]} DRP_LEXICON_992_RULES
+ */
 export const DRP_LEXICON_992_RULES: CognitiveContractRule[] = [
   {
     id: 'PAT-003-M',
@@ -79,6 +98,13 @@ export const DRP_LEXICON_992_RULES: CognitiveContractRule[] = [
   }
 ];
 
+/**
+ * Injects the Cognitive Bytecode rules into a prompt payload.
+ * Generates the instruction set required by the LLM to process the decorators.
+ *
+ * @param {string} prompt - The original prompt text.
+ * @returns {string} The augmented prompt containing the compiled bytecode instructions.
+ */
 export const injectCognitiveBytecode = (prompt: string): string => {
   const decoratorsString = DRP_LEXICON_992_RULES.map(rule =>
     `- ${rule.decorator} (Layer: ${rule.layer}): Resolves ${rule.remediation}. Params: ${JSON.stringify(rule.parameters)}`
@@ -97,6 +123,13 @@ Explicitly enforce \`+++EntropyAnchor(level="High", focus="orthogonal_domain_int
 `;
 };
 
+/**
+ * Validates the output from an agent against the active cognitive contracts.
+ * Determines if the agent adhered to the constraints (e.g., prohibiting evaluative adjectives).
+ *
+ * @param {string} agentOutput - The generated text from the agent.
+ * @returns {{compliant: boolean, violations: string[]}} An object indicating compliance and listing any violations.
+ */
 export const validateContractCompliance = (agentOutput: string): { compliant: boolean; violations: string[] } => {
   // A simplistic mock validation that would theoretically parse the output for Homology Shadows (PAT-004) or PHR (PAT-005).
   // Real implementation would involve TDA (Persistent Homology) or VSA bindings.
