@@ -1,5 +1,20 @@
+/**
+ * @fileoverview Parser for the Cognitive Contract Definition Language (CCDL).
+ * Extracts structured schema definitions and configuration from markdown files.
+ */
+
 import * as yaml from 'js-yaml';
 
+/**
+ * Represents the extracted structure of a CCDL definition file.
+ * @interface CCDLSchema
+ * @property {Record<string, any>} [metadata] - General information about the definition.
+ * @property {Record<string, any>} [systemPrompt] - The core system prompt spec.
+ * @property {Record<string, any>[]} [tools] - Array of parsed tool configurations.
+ * @property {Record<string, any>} [inputSchema] - Parsed JSON defining input requirements.
+ * @property {Record<string, any>} [outputSchema] - Parsed JSON defining output structure.
+ * @property {Record<string, any>} [pdtSpecification] - Parsed YAML for Prompt Dimensioning & Tolerancing.
+ */
 export interface CCDLSchema {
   metadata?: Record<string, any>;
   systemPrompt?: Record<string, any>;
@@ -9,6 +24,13 @@ export interface CCDLSchema {
   pdtSpecification?: Record<string, any>;
 }
 
+/**
+ * Parses a markdown string containing CCDL definitions into a structured object.
+ * Searches for specific headers and extracts embedded YAML/JSON blocks.
+ *
+ * @param {string} markdownContent - The raw text of the markdown file (e.g., AGENTS.md).
+ * @returns {CCDLSchema} The parsed configuration schema.
+ */
 export const parseCCDL = (markdownContent: string): CCDLSchema => {
   const schema: CCDLSchema = {
     tools: []

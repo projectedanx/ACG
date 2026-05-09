@@ -1,6 +1,22 @@
 
+/**
+ * @fileoverview UI Component representing the main command interface for goal definition.
+ */
+
 import React from 'react';
 
+/**
+ * Props for the ControlPanel component.
+ * @interface Props
+ * @property {string} goal - The current architectural goal or prompt.
+ * @property {(goal: string) => void} setGoal - Callback to update the goal string.
+ * @property {boolean} isDeepThinking - Toggle state for deep analytical processing (Gemini Pro).
+ * @property {(val: boolean) => void} setIsDeepThinking - Callback to update the deep thinking flag.
+ * @property {boolean} isWebSearch - Toggle state to enable external web grounding.
+ * @property {(val: boolean) => void} setIsWebSearch - Callback to update the web search flag.
+ * @property {() => void} startConsensus - Callback to initiate the multi-agent deliberation.
+ * @property {boolean} isProcessing - Flag indicating if a process is active (disables inputs).
+ */
 interface Props {
   goal: string;
   setGoal: (g: string) => void;
@@ -12,6 +28,12 @@ interface Props {
   isProcessing: boolean;
 }
 
+/**
+ * Renders the input area for the user's architectural goal and configuration toggles.
+ *
+ * @param {Props} props - Component properties.
+ * @returns {JSX.Element} The rendered control panel.
+ */
 const ControlPanel: React.FC<Props> = ({ 
   goal, setGoal, isDeepThinking, setIsDeepThinking, isWebSearch, setIsWebSearch, onInitiate, isProcessing 
 }) => {

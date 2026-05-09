@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Main orchestrator component for the Architecture AI application.
+ * Manages application state, handles user interactions, and orchestrates calls
+ * to the Gemini services for multi-agent consensus and diff generation.
+ */
+
 
 import React, { useState, useCallback } from 'react';
 import { AppState, AgentRole, Message, RefactorPlan, SemanticDiff, AuditLogEntry, EpistemicBias } from './types';

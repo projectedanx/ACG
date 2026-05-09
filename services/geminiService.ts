@@ -1,9 +1,21 @@
 
+/**
+ * @fileoverview Service layer for interacting with the Google Gemini API.
+ * Orchestrates multi-agent consensus, plan generation, bias detection, and semantic diff analysis.
+ */
+
 import { injectCognitiveBytecode } from './cognitiveContractEngine';
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { AgentRole, Persona, RefactorPlan, SemanticDiff, GroundingLink, EpistemicBias, Message } from "../types";
 
-
+/**
+ * Scans a multi-agent architectural discussion for cognitive biases, logical fallacies,
+ * and epistemic blind spots using the Gemini 2.5 Flash model.
+ *
+ * @async
+ * @param {Message[]} messages - The array of messages representing the discussion context.
+ * @returns {Promise<EpistemicBias[]>} A promise that resolves to an array of detected biases.
+ */
 export const analyzeEpistemicBiases = async (messages: Message[]): Promise<EpistemicBias[]> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
@@ -53,6 +65,18 @@ export const analyzeEpistemicBiases = async (messages: Message[]): Promise<Epist
   }
 };
 
+
+/**
+ * Orchestrates a simulated multi-agent discussion based on a specific goal.
+ * Injects Cognitive Bytecode and role-specific Epistemic Matrices to guide generation.
+ *
+ * @async
+ * @param {string} goal - The architectural objective or problem to discuss.
+ * @param {Persona[]} personas - The array of agent personas participating in the discussion.
+ * @param {boolean} isDeepThinking - If true, utilizes the Gemini Pro model with an extended thinking budget.
+ * @param {boolean} isWebSearch - If true, enables external web search grounding (disables strict JSON output).
+ * @returns {Promise<{text: string, citations: GroundingLink[]}>} A promise resolving to the raw transcript and any web citations.
+ */
 export const getConsensusDiscussion = async (
   goal: string, 
   personas: Persona[], 
@@ -165,6 +189,17 @@ export const getConsensusDiscussion = async (
   };
 };
 
+
+/**
+ * Synthesizes the AI discussion with human feedback (Tacit Habitus) to generate
+ * a formal architectural refactoring plan. Implements the Golden Scar Protocol.
+ *
+ * @async
+ * @param {string} goal - The original architectural goal.
+ * @param {string} discussion - The generated multi-agent discussion transcript.
+ * @param {string} humanReflexion - The feedback or constraints provided by the human user.
+ * @returns {Promise<RefactorPlan>} A promise resolving to the generated refactoring plan object.
+ */
 export const generateSymbioticPlan = async (goal: string, discussion: string, humanReflexion: string): Promise<RefactorPlan> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   let prompt = `
@@ -228,6 +263,15 @@ export const generateSymbioticPlan = async (goal: string, discussion: string, hu
   return plan;
 };
 
+
+/**
+ * Simulates the execution of a refactoring plan to analyze its structural impact
+ * and generate a semantic drift score.
+ *
+ * @async
+ * @param {RefactorPlan} plan - The approved refactoring plan to analyze.
+ * @returns {Promise<SemanticDiff>} A promise resolving to the semantic diff analysis.
+ */
 export const generateSemanticDiff = async (plan: RefactorPlan): Promise<SemanticDiff> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   const prompt = `
