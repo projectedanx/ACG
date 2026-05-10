@@ -52,3 +52,7 @@ This repository maintains strict documentation constraints:
 ## Architectural Governance & Documentation Links
 - **[Lessons Learned](LESSONS_LEARNED.md)**: Documentation of historical constraints and resolved topological novelties.
 - **[Product Features](PRODUCT_FEATURES.md)**: Product roadmap and deep-dive feature specifications.
+
+## Agentic Emergence Features
+
+- **Zero-Trust Epistemic Ingress (ZTEI)**: The architecture establishes a cryptographic and structural gateway for all external data (e.g., webhook events). This model enforces AES decryption and signature verification prior to entering the Decentralized Cognitive Contracts Engine, guaranteeing Zero-Entropy Structural Enforcement against chaotic real-world inputs.
