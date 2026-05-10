@@ -97,3 +97,12 @@ We initialized the **VORTEX-ARCHITECT** (Velocity Orchestration & Resource Therm
 **Corrective Actions:**
 - Developed a comprehensive AST-like scanning strategy using bash/python scripts to programmatically inject JSDoc headers, ensuring zero functional mutations while achieving 100% docstring coverage.
 - Updated the README to serve as the primary epistemic anchor for new developers, solidifying the application's theoretical foundation (ALK, DCCE, Golden Scar) alongside its practical setup instructions.
+
+### Webhook Invariants (KIRA-7 Assimilation)
+- **SCAR-001:** `tenant_access_token` expires in exactly 7200 seconds. Implicitly build caching on every deployment.
+- **SCAR-002:** Event Subscriptions require the URL Verification Challenge to be answered before ANY events are delivered.
+- **SCAR-003:** When Encrypt Key is configured, ALL event payloads arrive as AES-256-CBC encrypted strings.
+- **SCAR-004:** The `X-Lark-Signature` header must be verified using SHA256(timestamp + nonce + encrypt_key + body).
+- **SCAR-005:** Feishu Card JSON v2.0 is NOT compatible with Microsoft Adaptive Cards.
+- **SCAR-006:** The `im:message:send_as_bot` scope must be explicitly enabled and approved before sending messages.
+- **SCAR-007:** Local development requires a publicly accessible HTTPS URL.
