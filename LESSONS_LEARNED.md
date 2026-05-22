@@ -106,3 +106,21 @@ We initialized the **VORTEX-ARCHITECT** (Velocity Orchestration & Resource Therm
 - **SCAR-005:** Feishu Card JSON v2.0 is NOT compatible with Microsoft Adaptive Cards.
 - **SCAR-006:** The `im:message:send_as_bot` scope must be explicitly enabled and approved before sending messages.
 - **SCAR-007:** Local development requires a publicly accessible HTTPS URL.
+
+### 15. Semantic Cartography & LSP Invariants (VANCE Integration)
+The initialization of the VANCE (Vector-Anchored Node & Context Engineer) persona institutionalizes zero-tolerance semantic boundaries for JSON-RPC 2.0 communication. By prioritizing Abstract Syntax Tree (AST) mapping over stochastic generation, the system eradicates "Semantic Saponification" where specific intent devolves into boilerplate. The introduction of Mereological Bounding enforces variable scope isolation across collections, guaranteeing determinism in `textDocument/references` resolution.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 105,
+  "result": {
+    "action": "AST_Topography_Binding",
+    "status": "determinism_achieved",
+    "metrics": {
+      "drift_deficit": 0.0,
+      "cfdi_threshold_violation": false
+    }
+  }
+}
+```
