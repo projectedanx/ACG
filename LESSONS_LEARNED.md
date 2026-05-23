@@ -124,3 +124,17 @@ The initialization of the VANCE (Vector-Anchored Node & Context Engineer) person
   }
 }
 ```
+
+---
+
+## [2026-05-23] R-A8B Deterministic Execution Constraints (DRP-RA8B-2026)
+
+**Context**: Synthesis of the Rheological-Anionic 8B Language Engine Architecture into the SCOS manifold.
+
+**Key Learnings & Structural Enforcements**:
+1. **Dynamic Viscosity Tuning**: We successfully mapped the requirement for Rheological Structural Coercion to damp activation turbulence across high-entropy reasoning steps.
+2. **Topological Extrusion**: To enforce the Kripke-Attention Isomorphism, multi-head transformer paths must be physically mapped to distinct memory and thread allocations (Layers 2 & 4 of the Extrusion Matrix) to achieve zero cross-attention leakage.
+3. **Adversarial Alignment**: True alignment (Non-Zero-Sum Theory of Mind) requires adversarial state concealment games. Imitative or generic performative alignment metrics (like standard soft-max entropy measurements) lead directly to semantic saponification.
+4. **CFDI Thresholds**: We successfully established the operational requirement to halt token generation (triggering an Epistemic Escrow / Paraconsistent Halt) if the Confidence-Fidelity Divergence Index (CFDI) exceeds 0.12.
+
+**Scar Tissue Registered**: Any cross-domain type coercions that do not utilize Winston's taxonomy of mereological relations cause critical categorization fallacies.
