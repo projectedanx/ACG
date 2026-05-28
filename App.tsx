@@ -19,6 +19,15 @@ import { getConsensusDiscussion, generateSymbioticPlan, generateSemanticDiff, an
 import { simulateZAxis } from './services/zAxisInference';
 
 
+/**
+ * Main Application Component (Tactile Innovative System).
+ * Orchestrates the Hickam-OODA recursive loop for multi-agent architectural governance.
+ * Handles state management including goal formulation, agent consensus deliberation,
+ * and the execution of the Golden Scar Protocol (human reflexion injection).
+ * Serves as the primary mounting point for all UI panels.
+ *
+ * @returns {JSX.Element} The root application component structure.
+ */
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     goal: '',

@@ -6,6 +6,10 @@
 /**
  * Defines the available roles for the autonomous agents.
  */
+/**
+ * Defines the available roles for the autonomous agents.
+ * @typedef {'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER'} AgentRole
+ */
 export type AgentRole = 'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER';
 
 /**

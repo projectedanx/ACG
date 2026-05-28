@@ -3,6 +3,11 @@ import React, { useMemo } from 'react';
 import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts';
 import { SemanticDiff } from '../types';
 
+/**
+ * Props for the DriftDashboard component.
+ * @interface Props
+ * @property {SemanticDiff[]} diffs - An array of historical semantic diff analysis objects.
+ */
 interface Props {
   diffs: SemanticDiff[];
 }
