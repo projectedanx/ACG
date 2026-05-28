@@ -9,9 +9,11 @@ import { parseCCDL } from '../services/ccdlParser.js';
 
 /**
  * Main execution function for the agent compilation process.
- * Reads AGENTS.md, parses the CCDL definition, and writes to public/agent-config.json.
+ * Acts as the build-step ingestion mechanism, reading the declarative AGENTS.md file,
+ * parsing the structured Cognitive Contract Definition Language (CCDL), and emitting
+ * a static, deterministic JSON artifact to the public directory for runtime consumption.
  *
- * @returns {void}
+ * @returns {void} Returns nothing, but writes 'public/agent-config.json' to disk.
  */
 const run = () => {
   const agentsFilePath = path.join(process.cwd(), 'AGENTS.md');

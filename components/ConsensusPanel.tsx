@@ -18,9 +18,11 @@ interface Props {
 
 /**
  * Renders the timeline of messages from various agent personas during the deliberation phase.
+ * Displays the dialectical synthesis as it unfolds, complete with sender avatars,
+ * assigned roles, timestamps, and any external grounding citations retrieved via web search.
  *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element | null} The rendered discussion panel, or null if no messages exist.
+ * @param {Props} props - Component properties containing the message history.
+ * @returns {JSX.Element | null} The rendered discussion panel, or null if the message array is empty.
  */
 const ConsensusPanel: React.FC<Props> = ({ messages }) => {
   if (messages.length === 0) return null;

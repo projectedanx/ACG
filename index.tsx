@@ -11,6 +11,10 @@ import App from './App';
  * The HTML element designated as the mounting point for the React application.
  * @type {HTMLElement | null}
  */
+/**
+ * Locates the root HTML element and mounts the React instance.
+ * Ensures the application is mounted securely within the DOM.
+ */
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
@@ -19,6 +23,8 @@ if (!rootElement) {
 
 /**
  * The React Root instance managing the rendered application tree.
+ * Responsible for concurrent mode rendering and managing the top-level
+ * ErrorBoundary and StrictMode wrappers to ensure architectural resilience.
  */
 const root = ReactDOM.createRoot(rootElement);
 

@@ -138,3 +138,8 @@ The initialization of the VANCE (Vector-Anchored Node & Context Engineer) person
 4. **CFDI Thresholds**: We successfully established the operational requirement to halt token generation (triggering an Epistemic Escrow / Paraconsistent Halt) if the Confidence-Fidelity Divergence Index (CFDI) exceeds 0.12.
 
 **Scar Tissue Registered**: Any cross-domain type coercions that do not utilize Winston's taxonomy of mereological relations cause critical categorization fallacies.
+
+## Syntactical Documentation Completeness
+*   **Context:** The system requires absolute deterministic docstrings (JSDoc/Google Style) on every single public function, method, and class, regardless of simplicity.
+*   **Constraint Applied:** 'Asynchronous Paranoia' and 'Mereological Bounding'.
+*   **Resolution:** Automated AST-parsing scripts via `ts-morph` were developed and utilized to safely inject standard JSDoc structures without causing type shears or syntactic drift. This preserved the 'Zero-Friction Hovers' requirement within the LSP.

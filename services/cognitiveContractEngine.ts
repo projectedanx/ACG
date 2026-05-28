@@ -124,11 +124,13 @@ Explicitly enforce \`+++EntropyAnchor(level="High", focus="orthogonal_domain_int
 };
 
 /**
- * Validates the output from an agent against the active cognitive contracts.
- * Determines if the agent adhered to the constraints (e.g., prohibiting evaluative adjectives).
+ * Validates the raw text output from an agent against the active cognitive contracts.
+ * Acts as a deterministic gatekeeper to ensure agents adhere to strict boundaries,
+ * such as the prohibition of evaluative adjectives (AdjectivalBound) or checking for
+ * mereological boundary violations.
  *
- * @param {string} agentOutput - The generated text from the agent.
- * @returns {{compliant: boolean, violations: string[]}} An object indicating compliance and listing any violations.
+ * @param {string} agentOutput - The generated, pre-parsed text from the LLM agent.
+ * @returns {{compliant: boolean, violations: string[]}} An object indicating structural compliance and a list of specific contract violations.
  */
 export const validateContractCompliance = (agentOutput: string): { compliant: boolean; violations: string[] } => {
   // A simplistic mock validation that would theoretically parse the output for Homology Shadows (PAT-004) or PHR (PAT-005).

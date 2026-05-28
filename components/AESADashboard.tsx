@@ -1,11 +1,26 @@
 import React from 'react';
 import { EpistemicBias } from '../types';
 
+/**
+ * Props for the AESADashboard component.
+ * @interface AESADashboardProps
+ * @property {EpistemicBias[]} biases - Array of detected epistemic biases.
+ * @property {(biasId: string) => void} onMarkGoldenScar - Callback function to mark a bias as a Golden Scar.
+ */
 interface AESADashboardProps {
   biases: EpistemicBias[];
   onMarkGoldenScar: (biasId: string) => void;
 }
 
+/**
+ * Renders the Automated Epistemic Security Auditing (AESA) Dashboard.
+ * Displays detected biases and cognitive fallacies from the consensus discussion.
+ * Provides a UI for users to elevate specific heuristic logic to a "Golden Scar",
+ * enforcing human intuition over strict AI formal logic (implementing phi ratio).
+ *
+ * @param {AESADashboardProps} props - Component properties containing biases and callback.
+ * @returns {JSX.Element | null} The rendered component block, or null if the biases array is empty.
+ */
 const AESADashboard: React.FC<AESADashboardProps> = ({ biases, onMarkGoldenScar }) => {
   if (biases.length === 0) {
     return null;

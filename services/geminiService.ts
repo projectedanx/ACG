@@ -67,15 +67,17 @@ export const analyzeEpistemicBiases = async (messages: Message[]): Promise<Epist
 
 
 /**
- * Orchestrates a simulated multi-agent discussion based on a specific goal.
- * Injects Cognitive Bytecode and role-specific Epistemic Matrices to guide generation.
+ * Orchestrates a simulated multi-agent discussion based on a specific architectural goal.
+ * Dynamically injects Cognitive Bytecode (PDL decorators) and role-specific Epistemic Matrices
+ * to constrain and guide the stochastic generation process, ensuring domain adherence.
+ * Handles the routing between Gemini Flash (speed) and Gemini Pro (complex reasoning/deep thinking).
  *
  * @async
- * @param {string} goal - The architectural objective or problem to discuss.
- * @param {Persona[]} personas - The array of agent personas participating in the discussion.
- * @param {boolean} isDeepThinking - If true, utilizes the Gemini Pro model with an extended thinking budget.
- * @param {boolean} isWebSearch - If true, enables external web search grounding (disables strict JSON output).
- * @returns {Promise<{text: string, citations: GroundingLink[]}>} A promise resolving to the raw transcript and any web citations.
+ * @param {string} goal - The core architectural objective or problem statement.
+ * @param {Persona[]} personas - The specific subset of agent personas selected to deliberate.
+ * @param {boolean} isDeepThinking - Toggle to utilize the Gemini Pro model and grant maximum token thinking budget.
+ * @param {boolean} isWebSearch - Toggle to enable the Google Search grounding tool (bypasses strict JSON schemas).
+ * @returns {Promise<{text: string, citations: GroundingLink[]}>} A promise resolving to the raw discussion transcript string and an array of external citations.
  */
 export const getConsensusDiscussion = async (
   goal: string, 
@@ -191,14 +193,16 @@ export const getConsensusDiscussion = async (
 
 
 /**
- * Synthesizes the AI discussion with human feedback (Tacit Habitus) to generate
- * a formal architectural refactoring plan. Implements the Golden Scar Protocol.
+ * Synthesizes the formal AI discussion topology with empirical human feedback (Tacit Habitus)
+ * to generate a definitive, actionable architectural refactoring plan.
+ * Implements the 'Golden Scar Protocol' by assigning dominant mathematical weighting (Phi = 1.618)
+ * to the human input, overriding potential stochastic hallucinations.
  *
  * @async
- * @param {string} goal - The original architectural goal.
- * @param {string} discussion - The generated multi-agent discussion transcript.
- * @param {string} humanReflexion - The feedback or constraints provided by the human user.
- * @returns {Promise<RefactorPlan>} A promise resolving to the generated refactoring plan object.
+ * @param {string} goal - The original objective that initiated the workflow.
+ * @param {string} discussion - The raw text transcript of the agent consensus deliberation.
+ * @param {string} humanReflexion - The explicit, localized constraints provided by the human operator.
+ * @returns {Promise<RefactorPlan>} A promise resolving to the fully structured and validated refactoring plan object.
  */
 export const generateSymbioticPlan = async (goal: string, discussion: string, humanReflexion: string): Promise<RefactorPlan> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
@@ -265,12 +269,13 @@ export const generateSymbioticPlan = async (goal: string, discussion: string, hu
 
 
 /**
- * Simulates the execution of a refactoring plan to analyze its structural impact
- * and generate a semantic drift score.
+ * Simulates the execution of an approved refactoring plan against the codebase to mathematically
+ * analyze its structural impact and generate a quantifiable semantic drift score.
+ * Acts as the final heuristic check before committing architectural changes.
  *
  * @async
- * @param {RefactorPlan} plan - The approved refactoring plan to analyze.
- * @returns {Promise<SemanticDiff>} A promise resolving to the semantic diff analysis.
+ * @param {RefactorPlan} plan - The fully formed refactoring plan (including Tacit Habitus injections).
+ * @returns {Promise<SemanticDiff>} A promise resolving to the structured semantic diff analysis containing intent changes and the drift score.
  */
 export const generateSemanticDiff = async (plan: RefactorPlan): Promise<SemanticDiff> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });

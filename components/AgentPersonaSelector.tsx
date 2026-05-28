@@ -19,11 +19,12 @@ interface Props {
 }
 
 /**
- * Renders a grid of selectable agent persona cards.
- * Highlights the currently active persona for each role category.
+ * Renders a grid of selectable agent persona cards for the Governance Council.
+ * Visually highlights the currently active persona assigned to each specific architectural role.
+ * Clicking a card triggers the selection callback to update the active agent for that role.
  *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element} The rendered component block.
+ * @param {Props} props - The properties required to render the selector.
+ * @returns {JSX.Element} The rendered React component block containing the persona grid.
  */
 const AgentPersonaSelector: React.FC<Props> = ({ selectedPersonas, onSelect }) => {
   return (

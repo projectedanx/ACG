@@ -25,11 +25,12 @@ export interface CCDLSchema {
 }
 
 /**
- * Parses a markdown string containing CCDL definitions into a structured object.
- * Searches for specific headers and extracts embedded YAML/JSON blocks.
+ * Parses a raw markdown string containing Cognitive Contract Definition Language (CCDL).
+ * Extracts structured metadata, system prompts, schemas, and tool registries by locating
+ * specific markdown headers and extracting embedded YAML or JSON code blocks into AST-friendly structures.
  *
- * @param {string} markdownContent - The raw text of the markdown file (e.g., AGENTS.md).
- * @returns {CCDLSchema} The parsed configuration schema.
+ * @param {string} markdownContent - The complete raw text of the markdown file to be parsed.
+ * @returns {CCDLSchema} The parsed, deeply typed configuration schema object.
  */
 export const parseCCDL = (markdownContent: string): CCDLSchema => {
   const schema: CCDLSchema = {

@@ -2,6 +2,14 @@
 import React from 'react';
 import { RefactorPlan, SemanticDiff } from '../types';
 
+/**
+ * Props for the SemanticDiffViewer component.
+ * @interface Props
+ * @property {RefactorPlan | null} plan - The generated refactoring plan.
+ * @property {SemanticDiff | null} diff - The result of the semantic diff analysis.
+ * @property {() => void} onExecute - Callback to approve the plan and trigger diff analysis.
+ * @property {boolean} isProcessing - Flag indicating if processing is active.
+ */
 interface Props {
   plan: RefactorPlan | null;
   diff: SemanticDiff | null;
@@ -9,6 +17,14 @@ interface Props {
   isProcessing: boolean;
 }
 
+/**
+ * Renders the Governance Review panel displaying the synthesized formal architectural plan.
+ * Provides a side-by-side view of the proposed intent versus the original state (Semantic Diff).
+ * Exposes the final approval button to commit the plan and calculate the structural drift score.
+ *
+ * @param {Props} props - Component properties containing the plan and difference analysis.
+ * @returns {JSX.Element | null} The rendered review panel, or null if no plan exists.
+ */
 const SemanticDiffViewer: React.FC<Props> = ({ plan, diff, onExecute, isProcessing }) => {
   if (!plan) return null;
 

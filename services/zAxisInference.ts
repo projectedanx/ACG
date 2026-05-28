@@ -38,12 +38,13 @@ class RCC8Node {
 }
 
 /**
- * Calculates the Euclidean distance (Relational Vector) between two epistemic states.
- * Used to measure the degree of divergence or conflict between two architectural frames.
+ * Calculates the 3D Euclidean distance (Relational Vector) between two epistemic states.
+ * Used to mathematically measure the degree of divergence or conflict between two architectural
+ * frames mapped into an RCC-8 topological space, ensuring objective evaluation of shear.
  *
- * @param {RCC8Node} n1 - The first node.
- * @param {RCC8Node} n2 - The second node.
- * @returns {number} The calculated vector distance representing divergence.
+ * @param {RCC8Node} n1 - The base node representing the established constraint.
+ * @param {RCC8Node} n2 - The target node representing the proposed alteration.
+ * @returns {number} The scalar vector distance representing structural divergence.
  */
 export const computeRelationalVector = (n1: RCC8Node, n2: RCC8Node): number => {
   return Math.sqrt(Math.pow(n1.x - n2.x, 2) + Math.pow(n1.y - n2.y, 2) + Math.pow(n1.z - n2.z, 2));

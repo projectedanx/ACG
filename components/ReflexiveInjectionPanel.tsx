@@ -1,6 +1,15 @@
 import React from 'react';
 import { WorkflowState } from '../types';
 
+/**
+ * Props for the ReflexiveInjectionPanel component.
+ * @interface Props
+ * @property {WorkflowState} workflowState - The current state of the application workflow.
+ * @property {string} humanReflexionInput - The current value of the human input text area.
+ * @property {(val: string) => void} setHumanReflexionInput - Callback to update the human reflexion string.
+ * @property {() => void} onSynthesize - Callback fired to initiate synthesis.
+ * @property {boolean} isProcessing - Flag indicating if processing is active.
+ */
 interface Props {
   workflowState: WorkflowState;
   humanReflexionInput: string;
@@ -9,20 +18,7 @@ interface Props {
   isProcessing: boolean;
 }
 
-/**
- * Renders a text area allowing human operators to inject empirical realities
- * (Ontological Shear mitigation) before the formal architectural plan is synthesized.
- *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element} The rendered input panel.
- */
-/**
- * Renders a text area allowing human operators to inject empirical realities
- * (Ontological Shear mitigation) before the formal architectural plan is synthesized.
- *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element} The rendered input panel.
- */
+
 const ReflexiveInjectionPanel: React.FC<Props> = ({
   workflowState,
   humanReflexionInput,

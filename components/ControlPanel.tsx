@@ -29,10 +29,12 @@ interface Props {
 }
 
 /**
- * Renders the input area for the user's architectural goal and configuration toggles.
+ * Renders the primary input interface for defining the architectural goal.
+ * Includes text area for goal input, and toggle switches for enabling 'Deep Thinking Mode'
+ * (pro model) and 'Web Search Mode' for external grounding. Provides the main trigger to initiate deliberation.
  *
- * @param {Props} props - Component properties.
- * @returns {JSX.Element} The rendered control panel.
+ * @param {Props} props - Component properties including goal state and callbacks.
+ * @returns {JSX.Element} The rendered React component block for the control panel.
  */
 const ControlPanel: React.FC<Props> = ({ 
   goal, setGoal, isDeepThinking, setIsDeepThinking, isWebSearch, setIsWebSearch, onInitiate, isProcessing 
