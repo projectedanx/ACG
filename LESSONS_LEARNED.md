@@ -143,3 +143,9 @@ The initialization of the VANCE (Vector-Anchored Node & Context Engineer) person
 *   **Context:** The system requires absolute deterministic docstrings (JSDoc/Google Style) on every single public function, method, and class, regardless of simplicity.
 *   **Constraint Applied:** 'Asynchronous Paranoia' and 'Mereological Bounding'.
 *   **Resolution:** Automated AST-parsing scripts via `ts-morph` were developed and utilized to safely inject standard JSDoc structures without causing type shears or syntactic drift. This preserved the 'Zero-Friction Hovers' requirement within the LSP.
+
+### 3. Root Hygiene and Infrastructure Fortification
+We observed "Silent Rot" accumulating in the root directory via ad-hoc inspection scripts (`inspect.cjs`, `inspect2.cjs`, etc.) and unclassified simulation files (`pluriversal_simulation.py`). The Superintendent protocol was invoked to enforce a "Prune-First" methodology:
+* **Eradication:** Non-standard `.js`/`.cjs` files were deleted as hallway trash.
+* **Relocation:** Python simulations were moved to `scripts/` to maintain the root as a strictly regulated configuration space.
+This enforces Mereological Bounding, ensuring the repository root remains devoid of loose application logic.
