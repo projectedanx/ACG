@@ -196,3 +196,16 @@ export interface AppState {
   humanReflexionInput: string;
   biases: EpistemicBias[];
 }
+
+/**
+ * Represents the resultant state of an Infomorphism integration.
+ * @interface InfomorphismState
+ * @property {number} surprisalValue - The calculated high-surprisal feature index (0-1).
+ * @property {string} structuralInvariant - The bounded invariant ensuring reliable emergence.
+ * @property {boolean} isStable - Indicates if the combined state avoids Resolution Collapse.
+ */
+export interface InfomorphismState {
+  surprisalValue: number;
+  structuralInvariant: string;
+  isStable: boolean;
+}

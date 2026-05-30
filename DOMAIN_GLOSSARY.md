@@ -25,3 +25,9 @@ A failure state where floating-point inaccuracies at the exact zero-boundary of 
 
 ### 8. Prompt Dimensioning & Tolerancing (PD&T)
 A framework that defines personas and instructions via Datums, Form Controls, and Tolerances, turning natural language into measurable, immutable Feature Control Frames.
+
+### 9. Infomorphism
+A structural mapping between two distinct logical spaces that preserves relationships and truth conditions. In the context of Architecture AI, it maps the global, probabilistic AI logic graph to the localized, deterministic constraints of human empirical reality.
+
+### 10. Inverse Safety State
+A methodology for handling cognitive dissonance where, instead of retreating to known baselines, the system embraces a high-surprisal feature index (Surprisal Value). It establishes a structural invariant to hold opposing AI and human forces in tension, facilitating reliable emergence without Resolution Collapse.

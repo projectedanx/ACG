@@ -1,3 +1,4 @@
+import { executeInfomorphism } from './infomorphismEngine';
 
 /**
  * @fileoverview Service layer for interacting with the Google Gemini API.
@@ -206,6 +207,11 @@ export const getConsensusDiscussion = async (
  */
 export const generateSymbioticPlan = async (goal: string, discussion: string, humanReflexion: string): Promise<RefactorPlan> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+
+  // Synthesize Inverse Safety State using Infomorphism Engine
+  const infomorphism = executeInfomorphism(discussion, humanReflexion);
+  console.log('Generated Infomorphic Safety State:', infomorphism);
+
   let prompt = `
     Based on the following architectural goal and multi-agent AI discussion:
     Goal: ${goal}
@@ -214,7 +220,15 @@ export const generateSymbioticPlan = async (goal: string, discussion: string, hu
     HUMAN REFLEXION (TACIT HABITUS):
     ${humanReflexion}
 
-    You are executing the "Golden Scar Protocol" under the supervision of the Strategic Integration Project Manager.
+
+    Infomorphic Safety State Data:
+    - Surprisal Value: ${infomorphism.surprisalValue}
+    - Structural Invariant: ${infomorphism.structuralInvariant}
+    - Stable: ${infomorphism.isStable}
+
+    Incorporate the Structural Invariant into the Consensus Summary and ensure the Refactor Tasks adhere to the high-surprisal feature index defined by the Surprisal Value, creating an Inverse Safety State that explicitly bridges the AI logic and Human constraint.
+
+You are executing the "Golden Scar Protocol" under the supervision of the Strategic Integration Project Manager.
     You must fuse the formal topological structure of the AI discussion with the empirical, localized reality provided by the Human Reflexion.
     Assign a mathematical weight of Φ = 1.618 to the human context and empirical governance (DOMAIN_GLOSSARY.md, CONSTRAINTS.md).
     Assign a weight of 1.000 to the stochastic generation frame.
