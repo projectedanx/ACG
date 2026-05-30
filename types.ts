@@ -8,9 +8,9 @@
  */
 /**
  * Defines the available roles for the autonomous agents.
- * @typedef {'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER'} AgentRole
+ * @typedef {'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER' | 'LSP_ENGINEER'} AgentRole
  */
-export type AgentRole = 'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER';
+export type AgentRole = 'LEAD_ARCHITECT' | 'BACKEND_ENGINEER' | 'SECURITY_SPECIALIST' | 'DEVOPS_ENGINEER' | 'EPISTEMIC_ENGINEER' | 'SYSTEM_ARCHITECT' | 'FRONTEND_ENGINEER' | 'PROJECT_MANAGER' | 'LSP_ENGINEER';
 
 /**
  * Represents an AI agent persona configuration.
@@ -208,4 +208,20 @@ export interface InfomorphismState {
   surprisalValue: number;
   structuralInvariant: string;
   isStable: boolean;
+}
+
+/**
+ * Represents the result of a Confidence-Fidelity Divergence Index (CFDI) calculation.
+ * Used to halt execution if epistemic confidence diverges from deterministic reality.
+ * @interface CFDIResult
+ * @property {boolean} valid - Whether the asserted logic holds against local realities.
+ * @property {string} [reason] - The justification for a failure or rejection.
+ * @property {string} [dccd_action] - The action taken by the Draft-Conditioned Constrained Decoder.
+ * @property {any} [ast_node] - The corresponding Abstract Syntax Tree node, if valid.
+ */
+export interface CFDIResult {
+  valid: boolean;
+  reason?: string;
+  dccd_action?: string;
+  ast_node?: any;
 }
