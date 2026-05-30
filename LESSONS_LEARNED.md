@@ -161,3 +161,8 @@ By dynamically injecting this Inverse Safety State back into the AI's Refactor P
 **Resolution**:
 - Validated that the Reversal Curse can be mathematically neutralized by shifting the burden of bidirectional resolution from the stochastic LLM memory directly onto a Conflict-Free Replicated Semantic Graph (CFRSG), specifically utilizing Neo4j-style deterministic DAG traversals for both `textDocument/definition` and `textDocument/references` resolutions.
 - Established the Confidence-Fidelity Divergence Index (CFDI) parameter to bound uncertainty, triggering immediate epistemic escrow if the generated schema deviates from the deterministic reality of the graph.
+
+## DCCE Runtime Contract Enforcement (Epic 5, Story 2)
+- **Ontological Shear Resolution:** We implemented runtime enforcement of Cognitive Bytecode via `validateContractCompliance` in `services/cognitiveContractEngine.ts`. The output of Gemini is now strictly gated by Martensite Gate constraints (AdjectivalBound, Xenolinguistic Risk mapping back to DOMAIN_GLOSSARY, and the Mereological Mandate).
+- **Epistemic Escrow Integration:** Failing runtime validations now quarantine outputs and automatically generate `[⊘] EpistemicEscrow Triggered` messages rather than crashing the system or allowing untethered latent space hallucinations to slip into the consensus JSON.
+- **TDD Verification:** A formal test script (`scripts/test_cognitive_contracts.ts`) was added to ensure Betti Loops (β1 > 0) are tracked. Red-Green-Refactor flows for these contracts have been cemented.

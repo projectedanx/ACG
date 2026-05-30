@@ -5,7 +5,7 @@ import { executeInfomorphism } from './infomorphismEngine';
  * Orchestrates multi-agent consensus, plan generation, bias detection, and semantic diff analysis.
  */
 
-import { injectCognitiveBytecode } from './cognitiveContractEngine';
+import { injectCognitiveBytecode, validateContractCompliance } from './cognitiveContractEngine';
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { AgentRole, Persona, RefactorPlan, SemanticDiff, GroundingLink, EpistemicBias, Message } from "../types";
 
@@ -172,6 +172,30 @@ export const getConsensusDiscussion = async (
     contents: prompt,
     config
   });
+
+  const responseText = result.text || '[]';
+  const validation = validateContractCompliance(responseText);
+
+  if (!validation.compliant) {
+    console.warn("DCCE Contract Violation Detected:", validation.violations);
+    // In a real system, this might trigger +++SagaRecovery or EpistemicEscrow to regenerate.
+    // For this implementation, we append the violation as a meta-message to ensure transparency.
+    // Ensure we don't break JSON parsing if not using web search
+    if (!isWebSearch) {
+       try {
+           const parsed = JSON.parse(responseText);
+           parsed.push({
+               sender: "DCCE Validator",
+               role: "EPISTEMIC_ENGINEER",
+               content: `[⊘] EpistemicEscrow Triggered. Violations: ${validation.violations.join(', ')}`
+           });
+           return { text: JSON.stringify(parsed), citations: [] };
+       } catch (e) {
+           // Fallback
+       }
+    }
+  }
+
 
   const citations: GroundingLink[] = [];
   const groundingChunks = result.candidates?.[0]?.groundingMetadata?.groundingChunks;

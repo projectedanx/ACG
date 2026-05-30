@@ -123,6 +123,21 @@ Explicitly enforce \`+++EntropyAnchor(level="High", focus="orthogonal_domain_int
 `;
 };
 
+// Simplified domain glossary for runtime validation
+const DOMAIN_GLOSSARY = [
+  "Semantic Metrology", "Ontological Shear", "S5-Modal Attention",
+  "Golden Scar Protocol", "Paraconsistent Annotated Logic", "Xenolinguistic Risk",
+  "Resolution Collapse", "Prompt Dimensioning & Tolerancing", "Infomorphism",
+  "Inverse Safety State", "Nitinol Memory", "Conflict-Free Replicated Semantic Graph",
+  "Confidence-Fidelity Divergence Index", "Draft-Conditioned Constrained Decoder",
+  "Mereological Bounding", "Semantic Saponification"
+];
+
+// Xenolinguistic blocklist for simulation
+const XENOLINGUISTIC_BLOCKLIST = [
+  "MagicSynergy", "SynergisticIntegration", "SeamlessExperience"
+];
+
 /**
  * Validates the raw text output from an agent against the active cognitive contracts.
  * Acts as a deterministic gatekeeper to ensure agents adhere to strict boundaries,
@@ -133,12 +148,23 @@ Explicitly enforce \`+++EntropyAnchor(level="High", focus="orthogonal_domain_int
  * @returns {{compliant: boolean, violations: string[]}} An object indicating structural compliance and a list of specific contract violations.
  */
 export const validateContractCompliance = (agentOutput: string): { compliant: boolean; violations: string[] } => {
-  // A simplistic mock validation that would theoretically parse the output for Homology Shadows (PAT-004) or PHR (PAT-005).
-  // Real implementation would involve TDA (Persistent Homology) or VSA bindings.
   const violations: string[] = [];
 
+  // 1. AdjectivalBound Validation
   if (agentOutput.match(/(beautiful|fast|robust)/i)) {
       violations.push("AdjectivalBound Violation: Output contains evaluative adjectives instead of concrete technical metrics.");
+  }
+
+  // 2. Xenolinguistic Risk Validation (CONSTRAINTS.md #3)
+  XENOLINGUISTIC_BLOCKLIST.forEach(term => {
+    if (agentOutput.includes(term)) {
+        violations.push(`Xenolinguistic risk detected: Term '${term}' not in DOMAIN_GLOSSARY.md.`);
+    }
+  });
+
+  // 3. Mereological Mandate Validation (PAT-001)
+  if (agentOutput.match(/mutates.*database/i) || agentOutput.match(/cross-domain.*mutation/i) || agentOutput.match(/mutates.*context/i) || agentOutput.match(/directly.*mutates/i)) {
+      violations.push("Mereological Mandate Violation: Zero cross-domain state mutation calls permitted.");
   }
 
   return {
