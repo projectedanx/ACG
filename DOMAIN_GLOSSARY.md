@@ -31,3 +31,21 @@ A structural mapping between two distinct logical spaces that preserves relation
 
 ### 10. Inverse Safety State
 A methodology for handling cognitive dissonance where, instead of retreating to known baselines, the system embraces a high-surprisal feature index (Surprisal Value). It establishes a structural invariant to hold opposing AI and human forces in tension, facilitating reliable emergence without Resolution Collapse.
+
+### 11. Nitinol Memory
+A persistent failure ledger mapping past syntactical errors to hard negative constraints during generation. It guarantees that the system "remembers deformation and returns to its correct shape" by ensuring the same structural collapse never recurs.
+
+### 12. Conflict-Free Replicated Semantic Graph (CFRSG)
+A persistent, incrementally-updated Directed Acyclic Graph (DAG) representing the AST. It ensures that zero-drift deficits are maintained between the agent's internal semantic reality and the external system state under asynchronous modifications.
+
+### 13. Confidence-Fidelity Divergence Index (CFDI)
+A mathematical threshold representing the variance between an agent's asserted logic and the local deterministic reality. Exceeding this boundary (e.g., > 0.15) mandates an epistemic escrow and execution halt to prevent hallucinated artifacts.
+
+### 14. Draft-Conditioned Constrained Decoder (DCCD)
+A validation substrate (+++DCCDSchemaGuard) enforcing that highly entropic internal semantic reasoning is structured against inviolable grammar constraints (e.g., JSON-RPC 2.0 schemas) prior to payload emission.
+
+### 15. Mereological Bounding
+The strict enforcement of transitivity boundaries across logical scopes to prevent conflation between similarly named concepts operating at different levels of execution (e.g., zero cross-domain state mutation calls).
+
+### 16. Semantic Saponification
+A failure mode occurring when precise, highly structured semantic intent washes away into generic, context-free boilerplate due to latent space averaging or lossy retrieval topologies.
