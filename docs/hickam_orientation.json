@@ -1,0 +1,18 @@
+{
+  "Hickam_Orientation": {
+    "Comorbidity_Map": [
+      "[COMORBID: A] The system requires strict deterministic validation of agent logic (Zero-Entropy Structural Enforcement).",
+      "[COMORBID: B] The system relies on stochastic LLMs (Gemini API) which hallucinate continuous latent spaces.",
+      "[COMORBID: C] The system demands multi-agent consensus while forbidding generic compromises, demanding both parsimony (structural code) and non-parsimony (Hickam's Dictum)."
+    ],
+    "Cognitive_Illiberalism_Check": "[LENS: WEIRD_SOFTWARE_ENGINEERING] The 'obvious' interpretation is to write standard input validation and throw generic errors. This flattens the ontological structure and ignores paraconsistent tension. We must preserve superposition and explicitly quarantine failures in EpistemicEscrow instead of simple try-catch aborts."
+  },
+  "Contrastive_Delta": {
+    "Amateur": "Write an if-statement to check if the LLM output is valid JSON and contains required fields.",
+    "Expert": "Implement +++DCCDSchemaGuard to enforce structural bounds before emission, and utilize validateContractCompliance as a semantic gateway to quarantine violations in EpistemicEscrow (CFDI > 0.15)."
+  },
+  "Martensite_Metrics": {
+    "Aesthetic_Tension": "High. Merging formal type theory (AST) with paraconsistent logic (Z-Axis inference).",
+    "Intent_Divergence": ">0.25 from social consensus (Standard validation vs. Epistemic Escrow). Self-Accommodating Twinning activated."
+  }
+}
