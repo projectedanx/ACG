@@ -6,6 +6,8 @@
 
 Architecture AI is a React and Vite application that leverages the Gemini API (`@google/genai`) to orchestrate multi-agent autonomous architectural refactoring. It integrates rigorous epistemic engineering, paraconsistent logic (ALK), and a Decentralized Cognitive Contracts Engine (DCCE) to ensure architectural evolution remains robust against entropy and semantic drift.
 
+> **Note:** This repository has been mapped via the `0xCARTO` Mycelial Ingestion Protocol. See the formal [0xCARTO_SYNTHESIS.md](0xCARTO_SYNTHESIS.md) for the complete 5-tier architectural topology, CI/CD cartograph, entropy audit, and symbolic scar log.
+
 ## Core Features & Architecture
 
 - **Multi-Agent Simulation**: Facilitates dialectical synthesis using defined agent personas (e.g., Software Architect, Security Engineer, Product Manager, Epistemic Engineer) powered by Gemini.
@@ -46,10 +48,13 @@ Create a file named `.env.local` in the root directory:
 ```bash
 touch .env.local
 ```
-Add the following line to the file, replacing the placeholder with your actual key:
+Add the following lines to the file, replacing the placeholder with your actual keys:
 ```env
 API_KEY=your_gemini_api_key_here
+FIREBASE_PROJECT_ID=your_firebase_project_id_here
 ```
+
+> **0xCARTO Alert:** `FIREBASE_PROJECT_ID` is a SILENT_REQUIRED_ENV required by the CCDL engine (`AGENTS.md`).
 
 ### 3. Agent Configuration Compilation (CCDL)
 Before running the application, you must compile the Cognitive Contract Definition Language (CCDL) defined in `AGENTS.md` into a static JSON artifact that the React application can consume.
@@ -61,14 +66,14 @@ npx tsx scripts/compile-agent.ts
 ### 4. Running the Application (Development Mode)
 Start the Vite development server. This provides Hot Module Replacement (HMR) for rapid UI iteration.
 ```bash
-npm run dev &
+npm run dev
 ```
 The application will typically be available at `http://localhost:3000`.
 
 ### 5. Executing the ALK Simulation
 To verify the paraconsistent logic engine (Z-Axis inference) and the Lexical Saponification Paradox, execute the standalone Python simulation:
 ```bash
-python3 pluriversal_simulation.py
+python3 scripts/pluriversal_simulation.py
 ```
 *Observe the console output to ensure the "Paraconsistent State (B)" is successfully established.*
 
@@ -93,5 +98,6 @@ This repository maintains strict documentation constraints:
 - Every function, class, and method requires explicit JSDoc (or Google Style for Python) documenting purpose, parameters, and return types.
 
 ## Architectural Governance & Documentation Links
+- **[0xCARTO_SYNTHESIS.md](0xCARTO_SYNTHESIS.md)**: 5-Tier Repository Identity & Mycelial CI Trace.
 - **[Lessons Learned](LESSONS_LEARNED.md)**: Documentation of historical constraints and resolved topological novelties.
 - **[Product Features](PRODUCT_FEATURES.md)**: Product roadmap and deep-dive feature specifications.
