@@ -230,8 +230,13 @@ export const validateContractCompliance = (agentOutput: string): { compliant: bo
   // This is a simplified check: if it looks like a domain mapping is happening without the tag, we flag it.
   // A robust check would require NLP, but here we enforce that if the output mentions 'metaphor' or analogous concepts,
   // it must use the strict tagging format.
-  if (agentOutput.match(/metaphor|analogy/i) && !agentOutput.includes('[METAPHOR:')) {
+  const hasMetaphorMention = /metaphor|analogy/i.test(agentOutput);
+  const metaphorTagRegex = /\[METAPHOR:\s*[\w.-]+\s*(?:->|→)\s*[\w.-]+\s*\]/;
+
+  if (hasMetaphorMention && !agentOutput.includes('[METAPHOR:')) {
     violations.push("MetaphorContract Violation: Domain mappings must be tagged explicitly with [METAPHOR: {source} -> {target}].");
+  } else if (agentOutput.includes('[METAPHOR:') && !metaphorTagRegex.test(agentOutput)) {
+    violations.push("MetaphorContract Violation: Malformed metaphor tag format. Expected [METAPHOR: {source_domain}.{concept} -> {target_domain}.{concept}].");
   }
 
   return {
