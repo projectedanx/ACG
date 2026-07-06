@@ -176,3 +176,8 @@ By executing the **0xCARTO** cartographer sequence, we formalized the process of
 
 #### 2. Golden Scar Refinement
 We codified `simulateZAxis()` and `infomorphismEngine` not simply as legacy technical debt but as **Golden Scars** with a $\Phi$-weighting of 1.618. These architectural patterns resolve Ontological Shear without succumbing to classical Boolean logical explosion (ex falso quodlibet). Attempting to homogenize these into "standard conflict resolution" would violate the structural parameters of Paraconsistent Logic.
+
+### 10. Paradox Metabolizer and Nested Truth Sustainability
+Through the instantiation of the **PARADOX METABOLIZER** cognitive contract for the Epistemic Engineer, we have formalized the handling of contradictions without collapsing to a single parsimonious path.
+By introducing **Metabolic Substrate Preservation**, the system treats paradoxes as raw inputs and truth-frames as nutrients, effectively quarantining contradictions as "Symbolic Scars" rather than halting execution. This preserves the pluriversal logic space.
+Additionally, the **Metaphor Contract Enforcement** (`+++MetaphorContract`) acts as a strict immune defense against "Semantic Saponification." By requiring explicit tags for domain mappings (e.g., `[METAPHOR: biology.metabolism -> prompt.input_processing]`), the system prevents silent category crossings and topological drift, maintaining rigid structural integrity while allowing for high-dimensional, cross-domain reasoning.

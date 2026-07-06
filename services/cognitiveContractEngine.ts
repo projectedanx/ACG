@@ -96,6 +96,63 @@ export const DRP_LEXICON_992_RULES: CognitiveContractRule[] = [
     remediation: 'Seed-Hacking, trivial scalar optimization',
     parameters: { level: 'High', focus: 'orthogonal_domain_intersections' }
   }
+,
+  {
+    id: 'PAT-011-M',
+    decorator: '+++RecursionGuard',
+    layer: 'Cognitive',
+    remediation: 'Infinite Regress, Recursive Logic Traps',
+    parameters: { max_depth: 3, on_breach: 'summarize_halt' }
+  },
+  {
+    id: 'PAT-012-M',
+    decorator: '+++MetaphorContract',
+    layer: 'Cognitive/Epistemic',
+    remediation: 'Silent Category Crossings, Drift Risk',
+    parameters: { enforcement: 'explicit_tags', drift_detection: 'L07' }
+  },
+  {
+    id: 'PAT-013-M',
+    decorator: '+++OntologyMode',
+    layer: 'Epistemic',
+    remediation: 'Truth Collapse',
+    parameters: { pluriversal: true }
+  },
+  {
+    id: 'PAT-014-M',
+    decorator: '+++EpistemicLens',
+    layer: 'Epistemic',
+    remediation: 'Ambiguity Discard',
+    parameters: { ambiguity: 'signal', paradox: 'metabolize', collapse: 'forbidden' }
+  },
+  {
+    id: 'PAT-015-M',
+    decorator: '+++Inoculation',
+    layer: 'Systemic',
+    remediation: 'Novel Paradox Shock',
+    parameters: { paradoxes: 'preloaded', count: 3 }
+  },
+  {
+    id: 'PAT-016-M',
+    decorator: '+++EpistemicTemp',
+    layer: 'Cognitive',
+    remediation: 'Static Ambiguity Tolerance',
+    parameters: { default: 0.5, override_allowed: true }
+  },
+  {
+    id: 'PAT-017-M',
+    decorator: '+++Evolution',
+    layer: 'Meta-Governance',
+    remediation: 'Stagnant Heuristics',
+    parameters: { trigger: 'scar_pattern', review_interval: 10, mutation_rate: 'conservative' }
+  },
+  {
+    id: 'PAT-018-M',
+    decorator: '+++LENS',
+    layer: 'Epistemic/Cognitive',
+    remediation: 'Various',
+    parameters: { type: 'paradox_detector', response: 'fork_not_collapse' }
+  }
 ];
 
 /**
@@ -165,6 +222,21 @@ export const validateContractCompliance = (agentOutput: string): { compliant: bo
   // 3. Mereological Mandate Validation (PAT-001)
   if (agentOutput.match(/mutates.*database/i) || agentOutput.match(/cross-domain.*mutation/i) || agentOutput.match(/mutates.*context/i) || agentOutput.match(/directly.*mutates/i)) {
       violations.push("Mereological Mandate Violation: Zero cross-domain state mutation calls permitted.");
+  }
+
+
+  // 4. MetaphorContract Validation (PAT-012-M)
+  // Ensure that if mapping between domains occurs, it uses the explicit tag [METAPHOR: ...]
+  // This is a simplified check: if it looks like a domain mapping is happening without the tag, we flag it.
+  // A robust check would require NLP, but here we enforce that if the output mentions 'metaphor' or analogous concepts,
+  // it must use the strict tagging format.
+  const hasMetaphorMention = /metaphor|analogy/i.test(agentOutput);
+  const metaphorTagRegex = /\[METAPHOR:\s*[\w.-]+\s*(?:->|→)\s*[\w.-]+\s*\]/;
+
+  if (hasMetaphorMention && !agentOutput.includes('[METAPHOR:')) {
+    violations.push("MetaphorContract Violation: Domain mappings must be tagged explicitly with [METAPHOR: {source} -> {target}].");
+  } else if (agentOutput.includes('[METAPHOR:') && !metaphorTagRegex.test(agentOutput)) {
+    violations.push("MetaphorContract Violation: Malformed metaphor tag format. Expected [METAPHOR: {source_domain}.{concept} -> {target_domain}.{concept}].");
   }
 
   return {
