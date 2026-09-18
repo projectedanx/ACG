@@ -59,6 +59,7 @@ graph TD
         L1[services/zAxisInference.ts]
         L2[services/infomorphismEngine.ts]
         L3[scripts/pluriversal_simulation.py<br/>Standalone execution]
+        L4[scripts/feature_discovery_simulation.py<br/>CoC Enactment Validation]
     end
 
     E1 --> APP
@@ -94,6 +95,8 @@ sequenceDiagram
     Note over Vite: Application orchestrates via Gemini API
     Dev->>Py: python scripts/pluriversal_simulation.py
     Note over Py: Standalone validation of Paraconsistent Logic
+    Dev->>Py: python scripts/feature_discovery_simulation.py
+    Note over Py: CoC Enactment for Pluriversal Feature Discovery
 ```
 
 ## Dependency Matrix & Entropy Audit
