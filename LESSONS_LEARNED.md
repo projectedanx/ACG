@@ -191,3 +191,10 @@ Additionally, the **Metaphor Contract Enforcement** (`+++MetaphorContract`) acts
 *   **Resolution (Ontological Shear Mitigation):** The `Infomorphism Engine` was refactored to replace superficial length-based modulus calculations with a deterministic lexical Jaccard index algorithm (`calculateTopologicalDerivative`). This effectively models "Stakeholder Dissonance" as an interference fit rather than averaging it out.
     *   By applying the Golden Scar Protocol ($\phi=1.618$) when calculating the structural invariant, the system correctly defers resolution on minor drifts (Epsilon-Tolerance Paraconsistency) and enforces hard structural limits on significant deviations, neutralizing both Resolution Collapse and Semantic Saponification.
     *   The `PROJECT_MANAGER` persona was updated in `constants.tsx` to include the `PDT_SPECIFICATION_BLOCK` inside its `epistemic_matrix`, eradicating natural language ambiguity from its operational workflow.
+
+### 6. Architectural Senescence Resolution: Prompt Logic Decoupling
+An automated Architectural Senescence audit identified `services/geminiService.ts` as exceeding cognitive complexity thresholds (score: 23). Following the AGS-A pipeline (Scientific Method Mode):
+*   **Hypothesis:** Decoupling prompt construction logic from the I/O-bound API execution into a dedicated `promptBuilder.ts` will enforce the Mereological Mandate (separating domain logic from infrastructure) and reduce complexity.
+*   **Adversarial Validation (ACU Challenge):** Assessed potential risks of over-indirection vs. the benefits of deterministic state management. The separation was mathematically validated as a structural invariant enhancement.
+*   **Execution:** Prompt templates were relocated to `services/promptBuilder.ts`. `geminiService.ts` was refactored to consume these builders.
+*   **Result:** Cognitive complexity in `geminiService.ts` dropped to 12. Type shears and topological boundaries were maintained per validation checks (`tsc --noEmit` and `test_cognitive_contracts.ts`).
