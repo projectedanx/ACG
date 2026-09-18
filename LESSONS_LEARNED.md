@@ -181,3 +181,13 @@ We codified `simulateZAxis()` and `infomorphismEngine` not simply as legacy tech
 Through the instantiation of the **PARADOX METABOLIZER** cognitive contract for the Epistemic Engineer, we have formalized the handling of contradictions without collapsing to a single parsimonious path.
 By introducing **Metabolic Substrate Preservation**, the system treats paradoxes as raw inputs and truth-frames as nutrients, effectively quarantining contradictions as "Symbolic Scars" rather than halting execution. This preserves the pluriversal logic space.
 Additionally, the **Metaphor Contract Enforcement** (`+++MetaphorContract`) acts as a strict immune defense against "Semantic Saponification." By requiring explicit tags for domain mappings (e.g., `[METAPHOR: biology.metabolism -> prompt.input_processing]`), the system prevents silent category crossings and topological drift, maintaining rigid structural integrity while allowing for high-dimensional, cross-domain reasoning.
+
+### Symbolic Scar Registry: Resolution Collapse & Semantic Saponification
+
+*   **Date:** 2026-06-03
+*   **Incident:** Discovery of structural failures when translating continuous mathematical models into deterministic workflows.
+*   **Phenomenon 1 (Resolution Collapse):** Floating-point inaccuracies at the exact zero-boundary of a geometric manifold caused the system to hallucinate false positive interferences between differing software modules.
+*   **Phenomenon 2 (Semantic Saponification):** The mathematical washing out of precise disciplinary definitions into generic approximations across large context windows.
+*   **Resolution (Ontological Shear Mitigation):** The `Infomorphism Engine` was refactored to replace superficial length-based modulus calculations with a deterministic lexical Jaccard index algorithm (`calculateTopologicalDerivative`). This effectively models "Stakeholder Dissonance" as an interference fit rather than averaging it out.
+    *   By applying the Golden Scar Protocol ($\phi=1.618$) when calculating the structural invariant, the system correctly defers resolution on minor drifts (Epsilon-Tolerance Paraconsistency) and enforces hard structural limits on significant deviations, neutralizing both Resolution Collapse and Semantic Saponification.
+    *   The `PROJECT_MANAGER` persona was updated in `constants.tsx` to include the `PDT_SPECIFICATION_BLOCK` inside its `epistemic_matrix`, eradicating natural language ambiguity from its operational workflow.
